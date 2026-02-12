@@ -50,4 +50,31 @@ You are creating a **Testing Strategy** document for a feature or sub-feature.
 
 ## Input
 
+The user provides both the feature path and detailed context. Parse the first line or phrase as the **feature path**, and treat everything else as **testing context**.
+
+If the user only provides a feature name with no description, **ask for more details** before generating — include critical paths to test, known edge cases, performance thresholds, or specific user scenarios.
+
+**Good input example:**
+
+```
+listing/filter
+
+Critical scenarios:
+- Combining multiple filters simultaneously (price + category + location)
+- Empty results state when no listings match
+- Filter state persists on page refresh via URL params
+- Saved filters load correctly for returning users
+- Performance: filter response <100ms with 50k listings
+Edge cases:
+- Max price < min price (should show validation error)
+- Special characters in search-within-filter
+- Rapid filter toggling (debounce handling)
+```
+
+**Insufficient input example (ask for more):**
+
+```
+listing/filter
+```
+
 Feature: $ARGUMENTS

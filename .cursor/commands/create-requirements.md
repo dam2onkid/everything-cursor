@@ -42,4 +42,27 @@ You are creating a **Requirements & Problem Understanding** document for a featu
 
 ## Input
 
+The user provides both the feature path and detailed context. Parse the first line or phrase as the **feature path**, and treat everything else as **requirements context**.
+
+If the user only provides a feature name with no description, **ask for more details** before generating — the more context, the better the output.
+
+**Good input example:**
+
+```
+search
+
+Full-text and semantic search for marketplace listings.
+- Users can search by title, description, tags, and seller name
+- Results ranked by relevance with filters (price range, category, date)
+- Must support Vietnamese diacritics and fuzzy matching
+- Autocomplete suggestions (debounced 300ms)
+- Target: <200ms response time for 500k listings
+```
+
+**Insufficient input example (ask for more):**
+
+```
+search
+```
+
 Feature: $ARGUMENTS

@@ -29,11 +29,11 @@ You are creating a **Planning & Implementation Guide** document for a feature or
 
 ## Path Examples
 
-| Input               | Save path                                            |
-| ------------------- | ---------------------------------------------------- |
-| `search`            | `docs/features/search/implementation.md`              |
-| `listing/filter`    | `docs/features/listing/filter/implementation.md`      |
-| `listing/export`    | `docs/features/listing/export/implementation.md`      |
+| Input            | Save path                                        |
+| ---------------- | ------------------------------------------------ |
+| `search`         | `docs/features/search/implementation.md`         |
+| `listing/filter` | `docs/features/listing/filter/implementation.md` |
+| `listing/export` | `docs/features/listing/export/implementation.md` |
 
 ## Output Rules
 
@@ -48,5 +48,28 @@ You are creating a **Planning & Implementation Guide** document for a feature or
 - For sub-features: reference the parent feature implementation context where relevant
 
 ## Input
+
+The user provides both the feature path and detailed context. Parse the first line or phrase as the **feature path**, and treat everything else as **implementation context**.
+
+If the user only provides a feature name with no description, **ask for more details** before generating — include priority order, known constraints, dependencies on other features, or specific patterns to follow.
+
+**Good input example:**
+
+```
+listing/filter
+
+Priority: price range filter first, then category, then location.
+- Reuse existing FilterChip component from src/components/ui
+- State management: Zustand store at src/stores/filterStore.ts
+- API: extend existing GET /api/listings endpoint with query params
+- Must be backwards-compatible with current listing page
+- Deploy behind feature flag ENABLE_ADVANCED_FILTERS
+```
+
+**Insufficient input example (ask for more):**
+
+```
+listing/filter
+```
 
 Feature: $ARGUMENTS

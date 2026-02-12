@@ -14,23 +14,23 @@ You are creating a **Requirements & Problem Understanding** document for a featu
      - Simple feature: `"search"`, `"profile-screen"`
      - Sub-feature: `"listing/filter"`, `"listing/export"`
 3. Determine the save path:
-   - Simple: `docs/feature/{feature-name}/requirements.md`
-   - Sub-feature: `docs/feature/{parent}/{sub-feature}/requirements.md`
+   - Simple: `docs/features/{feature-name}/requirements.md`
+   - Sub-feature: `docs/features/{parent}/{sub-feature}/requirements.md`
 4. Research the codebase for any existing related code, designs, or docs for this feature
 5. If this is a sub-feature:
-   - Check if parent-level docs exist at `docs/feature/{parent}/` (`README.md`, `requirements.md`, `design.md`)
-   - If parent-level docs are **missing**, warn the user and suggest running `/init-feature {parent}` first
-   - If they exist, read them for context
+   - Check if parent-level `README.md` exists at `docs/features/{parent}/README.md`
+   - If **missing**, warn the user and suggest running `/init-feature {parent}` first
+   - If it exists, read it for context (scope, shared constraints, sub-feature index)
 6. Generate the requirements document following the template structure
 7. Save to the determined path
 
 ## Path Examples
 
-| Input            | Save path                                     |
-| ---------------- | --------------------------------------------- |
-| `search`         | `docs/feature/search/requirements.md`         |
-| `listing/filter` | `docs/feature/listing/filter/requirements.md` |
-| `listing/export` | `docs/feature/listing/export/requirements.md` |
+| Input               | Save path                                       |
+| ------------------- | ----------------------------------------------- |
+| `search`            | `docs/features/search/requirements.md`           |
+| `listing/filter`    | `docs/features/listing/filter/requirements.md`   |
+| `listing/export`    | `docs/features/listing/export/requirements.md`   |
 
 ## Output Rules
 

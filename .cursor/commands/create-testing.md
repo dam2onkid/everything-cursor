@@ -14,27 +14,27 @@ You are creating a **Testing Strategy** document for a feature or sub-feature.
      - Simple feature: `"search"`, `"listing-detail"`
      - Sub-feature: `"listing/filter"`, `"listing/export"`
 3. Determine the doc path:
-   - Simple: `docs/feature/{feature-name}/`
-   - Sub-feature: `docs/feature/{parent}/{sub-feature}/`
+   - Simple: `docs/features/{feature-name}/`
+   - Sub-feature: `docs/features/{parent}/{sub-feature}/`
 4. Read the corresponding docs:
    - Requirements: `{doc-path}/requirements.md`
    - Design: `{doc-path}/design.md`
    - Implementation: `{doc-path}/implementation.md`
 5. If this is a sub-feature:
-   - Check if parent-level docs exist at `docs/feature/{parent}/` (`README.md`, `requirements.md`, `design.md`)
-   - If parent-level docs are **missing**, warn the user and suggest running `/init-feature {parent}` first
-   - If they exist, read them for context
+   - Check if parent-level `README.md` exists at `docs/features/{parent}/README.md`
+   - If **missing**, warn the user and suggest running `/init-feature {parent}` first
+   - If it exists, read it for context (scope, shared architecture, constraints)
 6. Analyze existing test patterns in the codebase
 7. Generate the testing document following the template structure
 8. Save to: `{doc-path}/testing.md`
 
 ## Path Examples
 
-| Input            | Save path                                |
-| ---------------- | ---------------------------------------- |
-| `search`         | `docs/feature/search/testing.md`         |
-| `listing/filter` | `docs/feature/listing/filter/testing.md` |
-| `listing/export` | `docs/feature/listing/export/testing.md` |
+| Input               | Save path                                      |
+| ------------------- | ---------------------------------------------- |
+| `search`            | `docs/features/search/testing.md`               |
+| `listing/filter`    | `docs/features/listing/filter/testing.md`       |
+| `listing/export`    | `docs/features/listing/export/testing.md`       |
 
 ## Output Rules
 

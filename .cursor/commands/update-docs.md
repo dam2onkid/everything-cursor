@@ -15,8 +15,8 @@ You are updating an existing feature document and tracking the change in a **Cha
    - **Document type** to update: `requirements`, `design`, `implementation`, or `testing`
    - **What changed** (brief description of the update)
 2. Determine the doc path:
-   - Simple: `docs/feature/{feature-name}/{doc-type}.md`
-   - Sub-feature: `docs/feature/{parent}/{sub-feature}/{doc-type}.md`
+   - Simple: `docs/features/{feature-name}/{doc-type}.md`
+   - Sub-feature: `docs/features/{parent}/{sub-feature}/{doc-type}.md`
 3. Read the target document at the determined path
 4. If the document does NOT exist, stop and warn the user — suggest using the corresponding `create-*` command instead
 5. Apply the requested changes to the document content
@@ -56,9 +56,9 @@ This keeps the document lean — the Changelog serves as the historical record, 
 
 | Input            | Doc type       | Target path                                   |
 | ---------------- | -------------- | --------------------------------------------- |
-| `search`         | `design`       | `docs/feature/search/design.md`               |
-| `listing/filter` | `requirements` | `docs/feature/listing/filter/requirements.md` |
-| `listing/export` | `design`       | `docs/feature/listing/export/design.md`       |
+| `search`         | `design`       | `docs/features/search/design.md`               |
+| `listing/filter` | `requirements` | `docs/features/listing/filter/requirements.md` |
+| `listing/export` | `design`       | `docs/features/listing/export/design.md`       |
 
 ### Example
 

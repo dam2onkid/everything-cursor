@@ -1,10 +1,10 @@
 ---
 phase: overview
 title: Feature Overview
-description: High-level overview of a complex feature with multiple sub-features
+description: Single parent-level doc for a complex feature — overview, scope, shared architecture, and sub-feature index
 ---
 
-# {Feature Name} — Feature Overview
+# {Feature Name} — Overview
 
 ## Changelog
 
@@ -14,14 +14,10 @@ description: High-level overview of a complex feature with multiple sub-features
 
 ## Summary
 
-**What is this feature?**
-
 - Brief description of the feature
 - Why it exists and what value it delivers
 
 ## Sub-Features
-
-**What are the major parts?**
 
 | Sub-Feature   | Description       | Status                           |
 | ------------- | ----------------- | -------------------------------- |
@@ -30,15 +26,19 @@ description: High-level overview of a complex feature with multiple sub-features
 
 ## Scope & Boundaries
 
-**What's included and what's not?**
+**In scope:**
 
-- In scope
-- Out of scope
-- Future considerations
+- ...
+
+**Out of scope:**
+
+- ...
+
+**Future considerations:**
+
+- ...
 
 ## User Flows
-
-**How does the user move through this feature?**
 
 ```mermaid
 graph LR
@@ -48,23 +48,48 @@ graph LR
     C --> D
 ```
 
-## Dependencies
+## Shared Architecture
 
-**What does this feature depend on?**
+High-level overview of how sub-features connect. No implementation details — those live in sub-feature docs.
 
-- Internal dependencies (other features, modules)
-- External dependencies (APIs, services)
-- Shared components / utilities
+```mermaid
+graph TD
+    A[Entry] --> B[Sub-Feature 1]
+    A --> C[Sub-Feature 2]
+    B --> D[Shared Layer]
+    C --> D
+```
+
+| Decision                   | Choice          | Rationale |
+| -------------------------- | --------------- | --------- |
+| Key architectural decision | What was chosen | Why       |
+
+## Shared Constraints
+
+**Technical:**
+
+- Tech stack, platform constraints
+- Shared dependencies (APIs, modules, models)
+
+**Performance:**
+
+| Metric     | Target       |
+| ---------- | ------------ |
+| Key metric | Target value |
+
+**Security / Accessibility:**
+
+- Brief shared NFRs that apply to all sub-features
+
+## Open Questions
+
+- Unresolved items requiring stakeholder input
 
 ## Documentation Map
 
-**Where to find detailed docs:**
-
 ```
-docs/feature/{feature-name}/
-├── README.md                              ← You are here
-├── requirements.md                        ← High-level requirements
-├── design.md                              ← Overall architecture
+docs/features/{feature-name}/
+├── README.md                              ← You are here (overview + scope + shared architecture)
 │
 ├── {sub-feature-1}/
 │   ├── requirements.md

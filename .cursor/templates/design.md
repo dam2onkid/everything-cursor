@@ -8,8 +8,8 @@ description: Define the technical architecture, components, and data models
 
 ## Changelog
 
-| Date       | Author | Action  | Summary          |
-| ---------- | ------ | ------- | ---------------- |
+| Date | Author | Action | Summary |
+|------|--------|--------|---------|
 | YYYY-MM-DD | Author | Created | Initial creation |
 
 ## Architecture Overview
@@ -17,7 +17,6 @@ description: Define the technical architecture, components, and data models
 **What is the high-level system structure?**
 
 - Include a mermaid diagram that captures the main components and their relationships. Example:
-
   ```mermaid
   graph TD
     Client -->|HTTPS| API
@@ -25,7 +24,6 @@ description: Define the technical architecture, components, and data models
     API --> ServiceB
     ServiceA --> Database[(DB)]
   ```
-
 - Key components and their responsibilities
 - Technology stack choices and rationale
 

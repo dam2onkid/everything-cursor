@@ -8,9 +8,9 @@ description: Break down work into tasks, plan timeline, and document technical i
 
 ## Changelog
 
-| Date | Author | Action | Summary |
-|------|--------|--------|---------|
-| YYYY-MM-DD | Author | Created | Initial creation |
+| Date       | Action  | Summary          |
+| ---------- | ------- | ---------------- |
+| YYYY-MM-DD | Created | Initial creation |
 
 ## Milestones
 

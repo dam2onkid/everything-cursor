@@ -8,9 +8,9 @@ description: Single parent-level doc for a complex feature — overview, scope, 
 
 ## Changelog
 
-| Date       | Author | Action  | Summary          |
-| ---------- | ------ | ------- | ---------------- |
-| YYYY-MM-DD | Author | Created | Initial creation |
+| Date       | Action  | Summary          |
+| ---------- | ------- | ---------------- |
+| YYYY-MM-DD | Created | Initial creation |
 
 ## Summary
 

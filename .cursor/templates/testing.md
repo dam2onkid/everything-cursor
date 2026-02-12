@@ -8,9 +8,9 @@ description: Define testing approach, test cases, and quality assurance
 
 ## Changelog
 
-| Date       | Author | Action  | Summary          |
-| ---------- | ------ | ------- | ---------------- |
-| YYYY-MM-DD | Author | Created | Initial creation |
+| Date       | Action  | Summary          |
+| ---------- | ------- | ---------------- |
+| YYYY-MM-DD | Created | Initial creation |
 
 ## Test Coverage Goals
 

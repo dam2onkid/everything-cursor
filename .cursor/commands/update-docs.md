@@ -30,16 +30,15 @@ Insert the changelog block immediately after the document title (`# ...`). If a 
 ```markdown
 ## Changelog
 
-| Date       | Author      | Action  | Summary                                           |
-| ---------- | ----------- | ------- | ------------------------------------------------- |
-| YYYY-MM-DD | AI-assisted | Updated | Redesigned Data Models section (replaced old ERD) |
-| YYYY-MM-DD | AI-assisted | Created | Initial creation                                  |
+| Date       | Action  | Summary                                           |
+| ---------- | ------- | ------------------------------------------------- |
+| YYYY-MM-DD | Updated | Redesigned Data Models section (replaced old ERD) |
+| YYYY-MM-DD | Created | Initial creation                                  |
 ```
 
 - Use today's date
 - Newest entries go **first** (top of table)
 - Keep entries concise (1 line each)
-- If the user specifies an author name, use it; otherwise default to `AI-assisted`
 - **Action** column values: `Created`, `Updated`, `Removed`, `Replaced`
 
 ## Content Replacement Rules
@@ -54,8 +53,8 @@ This keeps the document lean — the Changelog serves as the historical record, 
 
 ### Path Examples
 
-| Input            | Doc type       | Target path                                   |
-| ---------------- | -------------- | --------------------------------------------- |
+| Input            | Doc type       | Target path                                    |
+| ---------------- | -------------- | ---------------------------------------------- |
 | `search`         | `design`       | `docs/features/search/design.md`               |
 | `listing/filter` | `requirements` | `docs/features/listing/filter/requirements.md` |
 | `listing/export` | `design`       | `docs/features/listing/export/design.md`       |
@@ -64,9 +63,9 @@ This keeps the document lean — the Changelog serves as the historical record, 
 
 If the user says "thay đổi Data Models từ SQL sang NoSQL":
 
-| Date       | Author      | Action   | Summary                                                        |
-| ---------- | ----------- | -------- | -------------------------------------------------------------- |
-| 2026-02-12 | AI-assisted | Replaced | Data Models: removed SQL schema, replaced with NoSQL doc model |
+| Date       | Action   | Summary                                                        |
+| ---------- | -------- | -------------------------------------------------------------- |
+| 2026-02-12 | Replaced | Data Models: removed SQL schema, replaced with NoSQL doc model |
 
 The old SQL schema is **deleted** from the doc. Only the new NoSQL model remains.
 

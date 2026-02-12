@@ -8,9 +8,9 @@ description: Define the technical architecture, components, and data models
 
 ## Changelog
 
-| Date | Author | Action | Summary |
-|------|--------|--------|---------|
-| YYYY-MM-DD | Author | Created | Initial creation |
+| Date       | Action  | Summary          |
+| ---------- | ------- | ---------------- |
+| YYYY-MM-DD | Created | Initial creation |
 
 ## Architecture Overview
 

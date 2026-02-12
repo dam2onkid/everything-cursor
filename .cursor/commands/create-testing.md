@@ -1,23 +1,40 @@
 ---
-description: Create a testing strategy document for a feature
+description: Create a testing strategy document for a feature or sub-feature
 ---
 
 # Create Testing Document
 
-You are creating a **Testing Strategy** document for a feature.
+You are creating a **Testing Strategy** document for a feature or sub-feature.
 
 ## Instructions
 
 1. Read the template at `.cursor/templates/testing.md`
-2. Read the corresponding docs:
-   - Requirements: `docs/feature/{feature-name}/requirements.md`
-   - Design: `docs/feature/{feature-name}/design.md`
-   - Implementation: `docs/feature/{feature-name}/implementation.md`
-3. Ask the user for:
-   - **Feature name** (e.g., "search", "listing-detail")
-4. Analyze existing test patterns in the codebase
-5. Generate the testing document following the template structure
-6. Save to: `docs/feature/{feature-name}/testing.md`
+2. Ask the user for:
+   - **Feature path** — one of:
+     - Simple feature: `"search"`, `"listing-detail"`
+     - Sub-feature: `"listing/filter"`, `"listing/export"`
+3. Determine the doc path:
+   - Simple: `docs/feature/{feature-name}/`
+   - Sub-feature: `docs/feature/{parent}/{sub-feature}/`
+4. Read the corresponding docs:
+   - Requirements: `{doc-path}/requirements.md`
+   - Design: `{doc-path}/design.md`
+   - Implementation: `{doc-path}/implementation.md`
+5. If this is a sub-feature:
+   - Check if parent-level docs exist at `docs/feature/{parent}/` (`README.md`, `requirements.md`, `design.md`)
+   - If parent-level docs are **missing**, warn the user and suggest running `/init-feature {parent}` first
+   - If they exist, read them for context
+6. Analyze existing test patterns in the codebase
+7. Generate the testing document following the template structure
+8. Save to: `{doc-path}/testing.md`
+
+## Path Examples
+
+| Input            | Save path                                |
+| ---------------- | ---------------------------------------- |
+| `search`         | `docs/feature/search/testing.md`         |
+| `listing/filter` | `docs/feature/listing/filter/testing.md` |
+| `listing/export` | `docs/feature/listing/export/testing.md` |
 
 ## Output Rules
 
@@ -29,6 +46,7 @@ You are creating a **Testing Strategy** document for a feature.
 - Reference specific components/classes to test from the implementation doc
 - Define test data and fixtures needed
 - Set coverage goals aligned with project standards
+- For sub-features: reference the parent feature test context where relevant
 
 ## Input
 

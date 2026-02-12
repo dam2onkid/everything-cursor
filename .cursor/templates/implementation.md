@@ -6,6 +6,12 @@ description: Break down work into tasks, plan timeline, and document technical i
 
 # Planning & Implementation Guide
 
+## Changelog
+
+| Date       | Author | Action  | Summary          |
+| ---------- | ------ | ------- | ---------------- |
+| YYYY-MM-DD | Author | Created | Initial creation |
+
 ## Milestones
 
 **What are the major checkpoints?**

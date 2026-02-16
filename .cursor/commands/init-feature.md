@@ -55,7 +55,3 @@ docs/features/{feature-name}/{sub-feature}/
 ├── implementation.md
 └── testing.md
 ```
-
-## Input
-
-Feature: $ARGUMENTS

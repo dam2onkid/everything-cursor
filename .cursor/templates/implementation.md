@@ -140,3 +140,12 @@ description: Break down work into tasks, plan timeline, and document technical i
 - Input validation
 - Data encryption
 - Secrets management
+
+## Related Documents
+
+| Document                                  | Description                                       |
+| ----------------------------------------- | ------------------------------------------------- |
+| [Feature Overview](./feature-overview.md) | Parent overview, scope & sub-feature index          |
+| [Requirements](./requirements.md)         | Problem statement & success criteria                |
+| [Design](./design.md)                     | Architecture, data models & API design (← previous) |
+| [Testing](./testing.md)                   | Test strategy & quality assurance (next →)           |

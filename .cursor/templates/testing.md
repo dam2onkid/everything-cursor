@@ -95,3 +95,12 @@ description: Define testing approach, test cases, and quality assurance
 - Issue tracking process
 - Bug severity levels
 - Regression testing strategy
+
+## Related Documents
+
+| Document                                  | Description                                            |
+| ----------------------------------------- | ------------------------------------------------------ |
+| [Feature Overview](./feature-overview.md) | Parent overview, scope & sub-feature index               |
+| [Requirements](./requirements.md)         | Problem statement & success criteria                     |
+| [Design](./design.md)                     | Architecture, data models & API design                   |
+| [Implementation](./implementation.md)     | Task breakdown & technical implementation (← previous)   |

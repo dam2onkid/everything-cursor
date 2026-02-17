@@ -60,3 +60,12 @@ description: Clarify the problem space, gather requirements, and define success 
 - Unresolved questions
 - Items requiring stakeholder input
 - Research needed
+
+## Related Documents
+
+| Document                                  | Description                                    |
+| ----------------------------------------- | ---------------------------------------------- |
+| [Feature Overview](./feature-overview.md) | Parent overview, scope & sub-feature index      |
+| [Design](./design.md)                     | Architecture, data models & API design (next →) |
+| [Implementation](./implementation.md)     | Task breakdown & technical implementation       |
+| [Testing](./testing.md)                   | Test strategy & quality assurance               |

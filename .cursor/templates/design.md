@@ -102,3 +102,12 @@ graph LR
 - Scalability considerations
 - Security requirements
 - Reliability/availability needs
+
+## Related Documents
+
+| Document                                  | Description                                         |
+| ----------------------------------------- | --------------------------------------------------- |
+| [Feature Overview](./feature-overview.md) | Parent overview, scope & sub-feature index            |
+| [Requirements](./requirements.md)         | Problem statement & success criteria (← previous)    |
+| [Implementation](./implementation.md)     | Task breakdown & technical implementation (next →)    |
+| [Testing](./testing.md)                   | Test strategy & quality assurance                     |

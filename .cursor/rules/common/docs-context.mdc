@@ -1,0 +1,42 @@
+---
+description: Progressive disclosure for project documentation — read docs/overview.md as index before any task
+alwaysApply: true
+---
+
+# Documentation Context
+
+## Project-Level Docs
+
+Before starting any task, check if `docs/overview.md` exists. If it does:
+
+1. Read `docs/overview.md` FIRST — it is the project index
+2. Navigate to specific docs ONLY when relevant to the current task:
+   - Architecture questions → `docs/architecture.md`
+   - UI/UX or styling → `docs/design-system.md`
+   - Database or data models → `docs/database.md`
+   - API endpoints or conventions → `docs/api.md`
+   - Roadmap or priorities → `docs/roadmap.md`
+3. Do NOT read all docs at once — progressive disclosure reduces context waste
+
+## Feature-Level Docs
+
+Feature docs live in `docs/features/{feature-name}/`:
+- `README.md` — feature overview and sub-feature index
+- `requirements.md`, `design.md`, `implementation.md`, `testing.md`
+
+Read feature docs only when working on that specific feature.
+
+## Documentation Hierarchy
+
+```
+docs/overview.md              ← Always read first (project index)
+docs/{architecture,design-system,database,api,roadmap}.md  ← Read on demand
+docs/features/{name}/         ← Read when working on specific feature
+```
+
+## Commands
+
+- `/init-docs` — Generate all project-level docs from codebase analysis
+- `/sync-docs` — Update all project-level docs when codebase changes
+- `/init-feature` — Initialize feature-level docs
+- `/update-docs` — Update a specific feature document

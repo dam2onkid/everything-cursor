@@ -14,93 +14,86 @@ description: Define testing approach, test cases, and quality assurance
 
 ## Test Coverage Goals
 
-**What level of testing do we aim for?**
-
-- Unit test coverage target (default: 100% of new/changed code)
-- Integration test scope (critical paths + error handling)
-- End-to-end test scenarios (key user journeys)
-- Alignment with requirements/design acceptance criteria
+- Unit test coverage target: X%
+- Integration test scope: critical paths + error handling
+- E2E test scenarios: key user journeys
 
 ## Unit Tests
 
-**What individual components need testing?**
-
 ### Component/Module 1
 
-- [ ] Test case 1: [Description] (covers scenario / branch)
-- [ ] Test case 2: [Description] (covers edge case / error handling)
-- [ ] Additional coverage: [Description]
+- [ ] Test case 1: [Description]
+- [ ] Test case 2: [Description]
 
 ### Component/Module 2
 
 - [ ] Test case 1: [Description]
 - [ ] Test case 2: [Description]
-- [ ] Additional coverage: [Description]
 
 ## Integration Tests
 
-**How do we test component interactions?**
-
+- [ ] API endpoint: `METHOD /path` — expected status, response shape
 - [ ] Integration scenario 1
 - [ ] Integration scenario 2
-- [ ] API endpoint tests
-- [ ] Integration scenario 3 (failure mode / rollback)
 
 ## End-to-End Tests
 
-**What user flows need validation?**
-
 - [ ] User flow 1: [Description]
 - [ ] User flow 2: [Description]
-- [ ] Critical path testing
-- [ ] Regression of adjacent features
 
 ## Test Data
 
-**What data do we use for testing?**
-
-- Test fixtures and mocks
+- Fixtures and mocks
 - Seed data requirements
-- Test database setup
 
-## Test Reporting & Coverage
+## API Endpoint Tests (curl)
 
-**How do we verify and communicate test results?**
+Endpoints to test with `/run-tests`. Each entry becomes a curl command.
 
-- Coverage commands and thresholds (`npm run test -- --coverage`)
-- Coverage gaps (files/functions below 100% and rationale)
-- Links to test reports or dashboards
-- Manual testing outcomes and sign-off
+| Method | Path   | Body / Params | Expected Status | Expected Response |
+| ------ | ------ | ------------- | --------------- | ----------------- |
+| GET    | /path  | —             | 200             | `{ ... }`         |
+| POST   | /path  | `{ ... }`     | 201             | `{ ... }`         |
 
 ## Manual Testing
 
-**What requires human validation?**
-
-- UI/UX testing checklist (include accessibility)
+- UI/UX checklist (include accessibility)
 - Browser/device compatibility
-- Smoke tests after deployment
 
 ## Performance Testing
 
-**How do we validate performance?**
+| Endpoint | Threshold | Notes |
+| -------- | --------- | ----- |
+| /path    | <200ms    |       |
 
-- Load testing scenarios
-- Stress testing approach
-- Performance benchmarks
+## Last Run Results
 
-## Bug Tracking
+> Updated automatically by `/run-tests`. Do not edit manually.
 
-**How do we manage issues?**
+| Metric              | Value |
+| ------------------- | ----- |
+| Date                |       |
+| Total tests         |       |
+| Passed              |       |
+| Failed              |       |
+| Coverage            |       |
+| API endpoints tested|       |
+| API passed          |       |
+| API failed          |       |
+| Fixes applied       |       |
 
-- Issue tracking process
-- Bug severity levels
-- Regression testing strategy
+### Fixes Applied
+
+_None yet._
+
+### Remaining Issues
+
+_None yet._
 
 ## Related Documents
 
-| Document                                  | Description                                            |
-| ----------------------------------------- | ------------------------------------------------------ |
-| [Feature Overview](./feature-overview.md) | Parent overview, scope & sub-feature index               |
-| [Requirements](./requirements.md)         | Problem statement & success criteria                     |
-| [Design](./design.md)                     | Architecture, data models & API design                   |
-| [Implementation](./implementation.md)     | Task breakdown & technical implementation (← previous)   |
+| Document                          | Description                                          |
+| --------------------------------- | ---------------------------------------------------- |
+| [Requirements](./requirements.md) | Problem statement & success criteria                 |
+| [Design](./design.md)             | Architecture, data models & API design               |
+| [Implementation](./implementation.md) | Task breakdown & technical implementation        |

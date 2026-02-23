@@ -39,6 +39,7 @@ Run these in Cursor chat with `/command-name`.
 | `/create-testing`        | Create a testing strategy document                                              |
 | `/update-feature-docs`   | Update an existing feature doc and add a changelog entry                        |
 | `/code-review`           | Run a comprehensive security and quality review on uncommitted changes          |
+| `/run-tests`             | Run all tests, curl API endpoints, save results, and auto-fix failures          |
 | `/tdd`                   | Start a TDD session — scaffolds interfaces, writes tests first, then implements |
 | `/pr`                    | Sync docs, commit, push, and open a pull request                                |
 

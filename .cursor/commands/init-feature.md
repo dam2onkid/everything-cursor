@@ -14,8 +14,10 @@ You are initializing a **complex feature** that will contain multiple sub-featur
 2. Ask the user for:
    - **Feature name** (e.g., "listing", "scanning")
    - **Sub-features** list (e.g., "filter, export, search, detail")
-3. Research the codebase for any existing related code, designs, or docs
-4. Generate and save 1 file:
+3. Create and switch to a new git branch: `feature/{feature-name}` (from the current branch)
+   - If the branch already exists, switch to it and inform the user
+4. Research the codebase for any existing related code, designs, or docs
+5. Generate and save 1 file:
    - `docs/features/{feature-name}/README.md` — from `feature-overview.md` template
 
 ## What the README Covers

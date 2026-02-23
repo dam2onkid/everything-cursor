@@ -1,6 +1,6 @@
 # everything-cursor
 
-A batteries-included `.cursor` configuration for AI-assisted development. Provides structured commands, rules, agents, and templates to enforce consistent workflows across any project.
+A batteries-included `.cursor` configuration for AI-assisted development. Provides structured commands, rules, agents, skills, and templates to enforce consistent workflows across any project.
 
 ## Setup
 
@@ -9,7 +9,7 @@ git clone https://github.com/<your-org>/everything-cursor.git
 cp -r everything-cursor/.cursor /path/to/your-project/
 ```
 
-That's it. Open your project in Cursor and the rules, commands, and agents are ready to use.
+Open your project in Cursor and the rules, commands, and agents are ready to use.
 
 ## What's Included
 
@@ -20,6 +20,7 @@ That's it. Open your project in Cursor and the rules, commands, and agents are r
 │   ├── common/        # Language-agnostic rules (always applied)
 │   └── typescript/    # TypeScript-specific rules (applied to .ts/.tsx/.js/.jsx)
 ├── agents/            # Specialized AI agents
+├── skills/            # Reusable multi-mode skills
 └── templates/         # Document templates used by commands
 ```
 
@@ -29,22 +30,54 @@ Run these in Cursor chat with `/command-name`.
 
 | Command                  | Description                                                                     |
 | ------------------------ | ------------------------------------------------------------------------------- |
-| `/init-feature`          | Initialize a complex feature with a parent-level overview doc                   |
+| `/init-docs`             | Initialize all 6 project-level docs from codebase analysis                      |
+| `/sync-project-docs`     | Detect drift between docs and code, update outdated sections                    |
+| `/init-feature`          | Initialize a complex feature with a parent-level overview doc + new git branch  |
 | `/create-requirements`   | Create a requirements document for a feature or sub-feature                     |
 | `/create-design`         | Create a system design & architecture document                                  |
 | `/create-implementation` | Create an implementation plan document                                          |
 | `/create-testing`        | Create a testing strategy document                                              |
-| `/update-docs`           | Update an existing feature doc and add a changelog entry                        |
+| `/update-feature-docs`   | Update an existing feature doc and add a changelog entry                        |
 | `/code-review`           | Run a comprehensive security and quality review on uncommitted changes          |
 | `/tdd`                   | Start a TDD session — scaffolds interfaces, writes tests first, then implements |
+| `/pr`                    | Sync docs, commit, push, and open a pull request                                |
 
-## Feature Documentation Workflow
+## Workflows
+
+### Project Documentation
+
+Initialize and maintain project-level docs that give the AI full context about your codebase.
+
+```
+/init-docs
+    │  generates 6 docs from codebase analysis
+    ▼
+docs/
+├── overview.md          ← project index (AI reads this first)
+├── architecture.md      ← tech stack, folder structure, patterns
+├── design-system.md     ← colors, typography, spacing, components
+├── database.md          ← ERD, tables, indexes, relationships
+├── api.md               ← endpoints, auth, response format
+└── roadmap.md           ← versions, milestones, priorities
+```
+
+After code changes, sync docs to keep them current:
+
+```
+/sync-project-docs
+```
+
+Detects drift between documentation and code, updates outdated sections, preserves user-written prose, and adds changelog entries.
+
+The `docs-context` rule (always applied) ensures the AI reads `docs/overview.md` first as the project index before any task, then navigates to specific docs on demand — progressive disclosure to reduce context waste.
+
+### Feature Documentation
 
 The commands follow a sequential workflow for documenting and building features:
 
 ```
 /init-feature {name}
-       │
+       │  creates docs/features/{name}/README.md + switches to feature/{name} branch
        ▼
 /create-requirements {name}
        │
@@ -57,6 +90,14 @@ The commands follow a sequential workflow for documenting and building features:
        ▼
 /create-testing {name}
 ```
+
+### Pull Request
+
+```
+/pr
+```
+
+Automatically syncs project docs and feature docs (if they exist), commits doc changes, then creates a PR with a summary of all changes.
 
 ### Tips: provide detailed requirements
 
@@ -80,26 +121,6 @@ Full-text and semantic search for marketplace listings.
 - Autocomplete suggestions as user types (debounced 300ms)
 - Mobile-first, must work offline with cached recent searches
 - Target: <200ms response time for 500k listings
-```
-
-**Bad**:
-
-```
-/create-design listing/filter
-```
-
-**Good**:
-
-```
-/create-design listing/filter
-
-Filter system for property listings page.
-- Filter by: price range (slider), bedrooms (1-5+), area (district multi-select), property type
-- Filters apply instantly without page reload (URL params sync)
-- "Save filter" feature for logged-in users (max 5 saved filters)
-- Must handle 50k+ listings with <100ms filter response
-- Backend: Supabase with PostGIS for location queries
-- Frontend: Next.js with Zustand for filter state
 ```
 
 ### Simple feature
@@ -154,11 +175,11 @@ docs/features/listing/
 ### Updating existing docs
 
 ```
-/update-docs listing/filter
+/update-feature-docs listing/filter
 <describe what changed and why>
 ```
 
-Prompts you for which doc type to update. Automatically adds a changelog entry.
+Prompts you for which doc type to update. Automatically adds a changelog entry. Old content is replaced (not appended) — the changelog serves as the historical record.
 
 ### TDD session
 
@@ -179,6 +200,20 @@ I need a function to validate Vietnamese phone numbers.
 
 No arguments needed — automatically reviews all uncommitted changes.
 
+## Skills
+
+Skills are reusable, multi-mode capabilities that combine multiple commands into a single workflow.
+
+| Skill                 | Description                                                                   |
+| --------------------- | ----------------------------------------------------------------------------- |
+| **agent-md-refactor** | Create, sync, and refactor project docs and agent instruction files (3 modes) |
+
+The `agent-md-refactor` skill supports three modes:
+
+- **Create** — analyze codebase and generate all 6 project-level docs
+- **Sync** — detect drift between docs and code, update outdated sections
+- **Refactor** — split bloated agent instruction files (AGENTS.md, CLAUDE.md) into progressive disclosure structure
+
 ## Agents
 
 | Agent                 | Description                                                   | When to use                                                |
@@ -193,6 +228,7 @@ No arguments needed — automatically reviews all uncommitted changes.
 | Rule             | Enforces                                                                            |
 | ---------------- | ----------------------------------------------------------------------------------- |
 | **coding-style** | Immutability, small files (<800 lines), small functions (<50 lines), error handling |
+| **docs-context** | Progressive disclosure — read `docs/overview.md` first, then navigate on demand     |
 | **pattern**      | Repository pattern, consistent API response envelope, skeleton projects             |
 | **security**     | No hardcoded secrets, input validation, injection prevention, rate limiting         |
 | **testing**      | 80% coverage minimum, TDD workflow, unit + integration + E2E tests                  |
@@ -203,10 +239,23 @@ No arguments needed — automatically reviews all uncommitted changes.
 | ---------------- | -------------------------------------------------------------------------- |
 | **coding-style** | Spread-based immutability, async/await error handling, Zod validation      |
 | **pattern**      | `ApiResponse<T>` interface, custom hooks pattern, typed repository pattern |
+| **security**     | Zod for runtime validation, DOMPurify for HTML, helmet for HTTP headers    |
+| **testing**      | Vitest + React Testing Library, MSW for API mocking, Playwright for E2E    |
 
 ## Templates
 
-Templates live in `.cursor/templates/` and are used automatically by the commands:
+Templates live in `.cursor/templates/` and are used automatically by the commands.
+
+### Project-level (used by `/init-docs`)
+
+- `docs-overview.md` — project index and quick reference
+- `docs-architecture.md` — tech stack, folder structure, patterns
+- `docs-design-system.md` — colors, typography, spacing, components
+- `docs-database.md` — ERD, tables, indexes, relationships
+- `docs-api.md` — endpoints, auth, response format
+- `docs-roadmap.md` — versions, milestones, priorities
+
+### Feature-level (used by `/init-feature` and `/create-*`)
 
 - `feature-overview.md` — parent-level feature overview
 - `requirements.md` — requirements & problem understanding
@@ -219,6 +268,7 @@ Templates live in `.cursor/templates/` and are used automatically by the command
 - **Add language-specific rules**: Create a new folder under `.cursor/rules/` (e.g., `python/`) with `.mdc` files
 - **Add new commands**: Create `.md` files in `.cursor/commands/`
 - **Add new agents**: Create `.md` files in `.cursor/agents/`
+- **Add new skills**: Create a `SKILL.md` in `.cursor/skills/{skill-name}/`
 - **Edit templates**: Modify files in `.cursor/templates/` to match your team's doc standards
 
 ## References

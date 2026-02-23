@@ -35,7 +35,7 @@ You are generating **project-level documentation** that describes the entire app
    - `docs/database.md` — from `docs-database.md` template
    - `docs/api.md` — from `docs-api.md` template
    - `docs/roadmap.md` — from `docs-roadmap.md` template
-5. If any `docs/*.md` file already exists, **skip it** and notify the user — suggest `/sync-docs` to update existing docs
+5. If any `docs/*.md` file already exists, **skip it** and notify the user — suggest `/sync-project-docs` to update existing docs
 
 ## Content Boundaries (No Overlap)
 
@@ -57,7 +57,7 @@ You are generating **project-level documentation** that describes the entire app
 - Set today's date in all Changelog entries
 - After creation, suggest next steps:
   - Use `/init-feature {name}` to document individual features
-  - Use `/sync-docs` to keep docs in sync after codebase changes
+  - Use `/sync-project-docs` to keep docs in sync after codebase changes
 
 ## Expected Result
 

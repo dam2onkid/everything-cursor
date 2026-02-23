@@ -37,6 +37,6 @@ docs/features/{name}/         ← Read when working on specific feature
 ## Commands
 
 - `/init-docs` — Generate all project-level docs from codebase analysis
-- `/sync-docs` — Update all project-level docs when codebase changes
+- `/sync-project-docs` — Update all project-level docs when codebase changes
 - `/init-feature` — Initialize feature-level docs
-- `/update-docs` — Update a specific feature document
+- `/update-feature-doc` — Update a specific feature document

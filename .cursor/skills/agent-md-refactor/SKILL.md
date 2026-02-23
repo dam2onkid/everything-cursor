@@ -80,7 +80,7 @@ Generate project-level documentation from codebase analysis.
 
 ### After Creation
 
-Suggest: `/init-feature {name}` for feature docs, `/sync-docs` to keep docs current.
+Suggest: `/init-feature {name}` for feature docs, `/sync-project-docs` to keep docs current.
 
 ---
 
@@ -201,9 +201,9 @@ This skill works with the project's existing documentation workflow:
 | Command | Purpose | Scope |
 |---------|---------|-------|
 | `/init-docs` | Generate all project-level docs | `docs/*.md` |
-| `/sync-docs` | Update project docs after changes | `docs/*.md` |
+| `/sync-project-docs` | Update project docs after changes | `docs/*.md` |
 | `/init-feature` | Initialize feature documentation | `docs/features/{name}/` |
-| `/update-docs` | Update a specific feature doc | `docs/features/{name}/*.md` |
+| `/update-feature-doc` | Update a specific feature doc | `docs/features/{name}/*.md` |
 
 **Rule:** `docs-context.mdc` (always applied) routes the LLM to read `docs/overview.md` first as the project index.
 

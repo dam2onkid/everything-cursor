@@ -45,7 +45,7 @@ You are **synchronizing** all project-level docs in `docs/` with the current sta
 
 ## Changelog Format
 
-Same format as `/update-docs`:
+Same format as `/update-feature-doc`:
 
 ```markdown
 ## Changelog
@@ -86,7 +86,7 @@ After syncing, output a summary:
 
 ## Feature Docs
 
-This command syncs **project-level** docs only (`docs/*.md`). Feature-level docs (`docs/features/`) are managed by `/update-docs`.
+This command syncs **project-level** docs only (`docs/*.md`). Feature-level docs (`docs/features/`) are managed by `/update-feature-doc`.
 
 If feature-level docs appear severely outdated during analysis, mention it in the sync summary as a recommendation.
 

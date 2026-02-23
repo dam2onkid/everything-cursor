@@ -33,10 +33,3 @@ docs/overview.md              ← Always read first (project index)
 docs/{architecture,design-system,database,api,roadmap}.md  ← Read on demand
 docs/features/{name}/         ← Read when working on specific feature
 ```
-
-## Commands
-
-- `/init-docs` — Generate all project-level docs from codebase analysis
-- `/sync-project-docs` — Update all project-level docs when codebase changes
-- `/init-feature` — Initialize feature-level docs
-- `/update-feature-doc` — Update a specific feature document

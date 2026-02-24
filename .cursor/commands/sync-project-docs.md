@@ -10,7 +10,8 @@ You are **synchronizing** all project-level docs in `docs/` with the current sta
 
 ## Instructions
 
-1. Read ALL existing docs in `docs/`:
+1. Read ALL existing docs:
+   - `VERSION.md` (project root)
    - `docs/overview.md`
    - `docs/architecture.md`
    - `docs/design-system.md`
@@ -34,14 +35,15 @@ You are **synchronizing** all project-level docs in `docs/` with the current sta
 
 ## Drift Detection Checklist
 
-| Doc              | Check For                                                      |
-| ---------------- | -------------------------------------------------------------- |
-| overview.md      | Project status changes, new features, command changes           |
-| architecture.md  | New/removed dependencies, folder restructure, pattern changes   |
-| design-system.md | Theme/color changes, new component patterns, breakpoint changes |
-| database.md      | New tables/columns, schema migrations, index changes            |
-| api.md           | New/removed endpoints, auth changes, response format changes    |
-| roadmap.md       | Milestone completion, priority shifts, new versions planned     |
+| Doc              | Check For                                                                 |
+| ---------------- | ------------------------------------------------------------------------- |
+| VERSION.md       | Feature list matches `docs/features/v{MAJOR}/` dirs, statuses are current |
+| overview.md      | Project status changes, new features, command changes                     |
+| architecture.md  | New/removed dependencies, folder restructure, pattern changes             |
+| design-system.md | Theme/color changes, new component patterns, breakpoint changes           |
+| database.md      | New tables/columns, schema migrations, index changes                      |
+| api.md           | New/removed endpoints, auth changes, response format changes              |
+| roadmap.md       | Milestone completion, priority shifts, new versions planned               |
 
 ## Changelog Format
 
@@ -50,10 +52,10 @@ Same format as `/update-feature-doc`:
 ```markdown
 ## Changelog
 
-| Date       | Action  | Summary                                              |
-| ---------- | ------- | ---------------------------------------------------- |
-| YYYY-MM-DD | Synced  | Added new User table, updated dependency versions    |
-| YYYY-MM-DD | Created | Initial creation                                     |
+| Date       | Action  | Summary                                           |
+| ---------- | ------- | ------------------------------------------------- |
+| YYYY-MM-DD | Synced  | Added new User table, updated dependency versions |
+| YYYY-MM-DD | Created | Initial creation                                  |
 ```
 
 - **Action** values for sync: `Synced`, `Updated`, `Added`, `Removed`
@@ -76,6 +78,7 @@ After syncing, output a summary:
 
 | Doc              | Status    | Changes                                    |
 | ---------------- | --------- | ------------------------------------------ |
+| VERSION.md       | Updated   | 1 feature status changed to done           |
 | overview.md      | Updated   | Added 2 new features to index              |
 | architecture.md  | Updated   | 3 dependencies updated, 1 new pattern      |
 | design-system.md | No change | —                                          |

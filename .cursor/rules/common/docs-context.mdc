@@ -10,26 +10,32 @@ alwaysApply: true
 Before starting any task, check if `docs/overview.md` exists. If it does:
 
 1. Read `docs/overview.md` FIRST — it is the project index
-2. Navigate to specific docs ONLY when relevant to the current task:
+2. Read `VERSION.md` when you need the current version or feature statuses
+3. Navigate to specific docs ONLY when relevant to the current task:
    - Architecture questions → `docs/architecture.md`
    - UI/UX or styling → `docs/design-system.md`
    - Database or data models → `docs/database.md`
    - API endpoints or conventions → `docs/api.md`
    - Roadmap or priorities → `docs/roadmap.md`
-3. Do NOT read all docs at once — progressive disclosure reduces context waste
+4. Do NOT read all docs at once — progressive disclosure reduces context waste
 
 ## Feature-Level Docs
 
-Feature docs live in `docs/features/{feature-name}/`:
+Feature docs live in `docs/features/v{MAJOR}/{feature-name}/`:
 - `README.md` — feature overview and sub-feature index
 - `requirements.md`, `design.md`, `implementation.md`, `testing.md`
+
+The `{MAJOR}` is the major version number from `VERSION.md` (e.g., `v0.1.0` → `v0`).
+
+If a feature was carried over from a prior major version, its docs reference the old version at `docs/features/v{PREV_MAJOR}/{feature-name}/`.
 
 Read feature docs only when working on that specific feature.
 
 ## Documentation Hierarchy
 
 ```
-docs/overview.md              ← Always read first (project index)
+VERSION.md                       ← Current version, feature statuses, release history
+docs/overview.md                 ← Always read first (project index)
 docs/{architecture,design-system,database,api,roadmap}.md  ← Read on demand
-docs/features/{name}/         ← Read when working on specific feature
+docs/features/v{MAJOR}/{name}/   ← Read when working on specific feature
 ```

@@ -20,6 +20,7 @@ Open your project in Cursor and the rules, commands, and agents are ready to use
 │   ├── common/        # Language-agnostic rules (always applied)
 │   └── typescript/    # TypeScript-specific rules (applied to .ts/.tsx/.js/.jsx)
 ├── agents/            # Specialized AI agents
+├── scripts/           # Cross-platform helper scripts used by commands
 ├── skills/            # Reusable multi-mode skills
 └── templates/         # Document templates used by commands
 ```
@@ -30,9 +31,9 @@ Run these in Cursor chat with `/command-name`.
 
 | Command                  | Description                                                                     |
 | ------------------------ | ------------------------------------------------------------------------------- |
-| `/init-docs`             | Initialize all 6 project-level docs from codebase analysis                      |
-| `/sync-project-docs`     | Detect drift between docs and code, update outdated sections                    |
-| `/init-feature`          | Initialize a complex feature with a parent-level overview doc + new git branch  |
+| `/init-docs`             | Initialize project docs + `VERSION.md` from codebase analysis                   |
+| `/sync-project-docs`     | Detect drift between docs/VERSION.md and code, update outdated sections         |
+| `/init-feature`          | Initialize a feature with overview doc + `feat/{version}/{name}` branch         |
 | `/create-requirements`   | Create a requirements document for a feature or sub-feature                     |
 | `/create-design`         | Create a system design & architecture document                                  |
 | `/create-implementation` | Create an implementation plan document                                          |
@@ -41,7 +42,8 @@ Run these in Cursor chat with `/command-name`.
 | `/code-review`           | Run a comprehensive security and quality review on uncommitted changes          |
 | `/run-tests`             | Run all tests, curl API endpoints, save results, and auto-fix failures          |
 | `/tdd`                   | Start a TDD session — scaffolds interfaces, writes tests first, then implements |
-| `/pr`                    | Sync docs, commit, push, and open a pull request                                |
+| `/pr`                    | Sync docs, commit, push, and open a PR targeting the default branch             |
+| `/ship-version`          | Tag current version (SemVer), advance VERSION.md to next version                |
 
 ## Workflows
 
@@ -51,8 +53,9 @@ Initialize and maintain project-level docs that give the AI full context about y
 
 ```
 /init-docs
-    │  generates 6 docs from codebase analysis
+    │  generates VERSION.md + 6 docs from codebase analysis
     ▼
+VERSION.md               ← current version, feature statuses, release history
 docs/
 ├── overview.md          ← project index (AI reads this first)
 ├── architecture.md      ← tech stack, folder structure, patterns
@@ -68,17 +71,20 @@ After code changes, sync docs to keep them current:
 /sync-project-docs
 ```
 
-Detects drift between documentation and code, updates outdated sections, preserves user-written prose, and adds changelog entries.
+Detects drift between documentation/VERSION.md and code, updates outdated sections, preserves user-written prose, and adds changelog entries.
 
 The `docs-context` rule (always applied) ensures the AI reads `docs/overview.md` first as the project index before any task, then navigates to specific docs on demand — progressive disclosure to reduce context waste.
 
 ### Feature Documentation
 
-The commands follow a sequential workflow for documenting and building features:
+The commands follow a sequential workflow for documenting and building features. Feature doc paths use the **major version** only (`v0`, `v1`, `v2`), extracted from the current SemVer in `VERSION.md`.
 
 ```
 /init-feature {name}
-       │  creates docs/features/{name}/README.md + switches to feature/{name} branch
+       │  creates docs/features/v{MAJOR}/{name}/README.md
+       │  switches to feat/{version}/{name} branch (from default branch)
+       │  adds feature to VERSION.md with not-started status
+       │  if feature existed in prior major version, references old docs
        ▼
 /create-requirements {name}
        │
@@ -92,13 +98,27 @@ The commands follow a sequential workflow for documenting and building features:
 /create-testing {name}
 ```
 
+### Versioning & Shipping
+
+All versions follow SemVer (`vMAJOR.MINOR.PATCH`). Initial development starts at `v0.1.0`.
+
+```
+default branch ──┬── feat/v0.1.0/auth ──── /pr ──→ merge + VERSION.md: auth=done
+                  ├── feat/v0.1.0/search ── /pr ──→ merge + VERSION.md: search=done
+                  │
+                  └── /ship-version ──→ git tag v0.1.0, advance VERSION.md to v0.2.0
+```
+
+- `/pr` merges the feature branch into the default branch and marks the feature as `done` in `VERSION.md`
+- `/ship-version` validates all features are done, creates a git tag, auto-suggests the next SemVer bump, and advances `VERSION.md`
+
 ### Pull Request
 
 ```
 /pr
 ```
 
-Automatically syncs project docs and feature docs (if they exist), commits doc changes, then creates a PR with a summary of all changes.
+Automatically syncs project docs and feature docs (if they exist), updates `VERSION.md` feature status, commits doc changes, then creates a PR targeting the default branch.
 
 ### Tips: provide detailed requirements
 
@@ -137,10 +157,10 @@ Full-text and semantic search for marketplace listings.
 /create-testing search
 ```
 
-Output:
+Output (given current version `v0.1.0`, major = `v0`):
 
 ```
-docs/features/search/
+docs/features/v0/search/
 ├── requirements.md
 ├── design.md
 ├── implementation.md
@@ -161,10 +181,10 @@ docs/features/search/
 /create-testing listing/filter
 ```
 
-Output:
+Output (given current version `v0.1.0`, major = `v0`):
 
 ```
-docs/features/listing/
+docs/features/v0/listing/
 ├── README.md              ← parent overview (from init-feature)
 └── filter/
     ├── requirements.md
@@ -243,6 +263,17 @@ The `agent-md-refactor` skill supports three modes:
 | **security**     | Zod for runtime validation, DOMPurify for HTML, helmet for HTTP headers    |
 | **testing**      | Vitest + React Testing Library, MSW for API mocking, Playwright for E2E    |
 
+## Scripts
+
+Scripts live in `.cursor/scripts/` and are called by commands to avoid repeating version/branch logic in every command prompt. Cross-platform: Linux, macOS, Windows (Git Bash / WSL / MSYS2).
+
+| Script                   | Output                  | Example          |
+| ------------------------ | ----------------------- | ---------------- |
+| `get-version.sh`         | Full SemVer version     | `v0.1.0`         |
+| `get-version.sh major`   | Major version only      | `v0`             |
+| `get-docs-path.sh`       | Feature docs base path  | `docs/features/v0` |
+| `get-default-branch.sh`  | Repo's default branch   | `main`           |
+
 ## Templates
 
 Templates live in `.cursor/templates/` and are used automatically by the commands.
@@ -254,7 +285,8 @@ Templates live in `.cursor/templates/` and are used automatically by the command
 - `docs-design-system.md` — colors, typography, spacing, components
 - `docs-database.md` — ERD, tables, indexes, relationships
 - `docs-api.md` — endpoints, auth, response format
-- `docs-roadmap.md` — versions, milestones, priorities
+- `docs-roadmap.md` — versions, milestones, priorities (SemVer)
+- `version.md` — VERSION.md file template (current version, feature statuses, releases)
 
 ### Feature-level (used by `/init-feature` and `/create-*`)
 

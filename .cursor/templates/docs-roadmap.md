@@ -1,10 +1,12 @@
 ---
 phase: project-roadmap
 title: Roadmap
-description: High-level version plan from MVP through future releases — milestones, not details
+description: High-level version plan using SemVer — milestones and goals, not feature status
 ---
 
 # Roadmap
+
+> **Live feature status** is tracked in [`VERSION.md`](../VERSION.md) at the project root. This roadmap defines high-level goals and milestones per version.
 
 ## Changelog
 
@@ -22,51 +24,54 @@ One sentence describing where this product is heading long-term.
 gantt
     title Release Timeline
     dateFormat YYYY-MM-DD
-    section MVP
-        Core features     :active, mvp, 2026-01-01, 30d
-    section v1.0
-        Full release      :v1, after mvp, 30d
-    section v1.1
-        Improvements      :v11, after v1, 30d
+    section v0.1.0
+        Initial development :active, v010, 2026-01-01, 30d
+    section v0.2.0
+        Iteration           :v020, after v010, 30d
+    section v1.0.0
+        Stable release      :v100, after v020, 30d
 ```
 
-## MVP
+## v0.1.0
 
-**Goal:** Ship the minimum viable product as fast as possible.
+**Goal:** Ship the initial working version as fast as possible.
 
 **Target:** YYYY-MM-DD
 
-| Feature           | Priority | Status      |
-| ----------------- | -------- | ----------- |
-| Core feature 1    | Must     | Not started |
-| Core feature 2    | Must     | Not started |
-| Core feature 3    | Must     | Not started |
+| Feature        | Priority |
+| -------------- | -------- |
+| Core feature 1 | Must     |
+| Core feature 2 | Must     |
+| Core feature 3 | Must     |
 
 **Ship criteria:**
-- What must work before MVP ships
+
+- What must work before this version ships
 - Acceptable trade-offs and known limitations
 
-## v1.0
+## v0.2.0
 
-**Goal:** Complete, polished first release.
+**Goal:** Iterate based on early feedback.
 
 **Target:** YYYY-MM-DD
 
-| Feature              | Priority | Status      |
-| -------------------- | -------- | ----------- |
-| Feature from MVP+    | Must     | Not started |
-| Polish / UX          | Should   | Not started |
-| Additional feature   | Should   | Not started |
+| Feature              | Priority |
+| -------------------- | -------- |
+| Feedback-driven item | Must     |
+| Polish / UX          | Should   |
+| Additional feature   | Should   |
 
-## v1.1+
+## v1.0.0
 
-**Goal:** Iteration based on user feedback.
+**Goal:** First stable release.
 
-| Feature              | Priority | Status      |
-| -------------------- | -------- | ----------- |
-| Feedback-driven item | Could    | Not started |
-| Performance work     | Could    | Not started |
-| Nice-to-have         | Won't    | Not started |
+**Target:** YYYY-MM-DD
+
+| Feature            | Priority |
+| ------------------ | -------- |
+| Stability / polish | Must     |
+| Performance work   | Should   |
+| Nice-to-have       | Could    |
 
 ## Backlog
 
@@ -78,19 +83,30 @@ Items considered but not scheduled:
 
 ## Priority Legend
 
-| Priority | Meaning                          |
-| -------- | -------------------------------- |
-| Must     | Required for this release        |
-| Should   | Important but not blocking ship  |
-| Could    | Nice to have if time permits     |
-| Won't    | Explicitly deferred              |
+| Priority | Meaning                         |
+| -------- | ------------------------------- |
+| Must     | Required for this release       |
+| Should   | Important but not blocking ship |
+| Could    | Nice to have if time permits    |
+| Won't    | Explicitly deferred             |
+
+## SemVer Reference
+
+| Bump  | When                                | Example         |
+| ----- | ----------------------------------- | --------------- |
+| PATCH | Bug fixes, docs, no new features    | v1.0.0 → v1.0.1 |
+| MINOR | New features, backward-compatible   | v1.0.0 → v1.1.0 |
+| MAJOR | Breaking changes or major milestone | v0.2.0 → v1.0.0 |
+
+`v0.x.x` = initial development (pre-stable). `v1.0.0` = first stable release.
 
 ## Related Documents
 
-| Document                            | Description                            |
-| ----------------------------------- | -------------------------------------- |
-| [Overview](./overview.md)           | Project concept & documentation index  |
-| [Architecture](./architecture.md)   | Tech stack & folder structure          |
-| [Design System](./design-system.md) | UI/UX language & component style       |
-| [Database](./database.md)           | Schema & relationships                 |
-| [API](./api.md)                     | Endpoints & conventions                |
+| Document                            | Description                           |
+| ----------------------------------- | ------------------------------------- |
+| [VERSION.md](../VERSION.md)         | Live feature status & release history |
+| [Overview](./overview.md)           | Project concept & documentation index |
+| [Architecture](./architecture.md)   | Tech stack & folder structure         |
+| [Design System](./design-system.md) | UI/UX language & component style      |
+| [Database](./database.md)           | Schema & relationships                |
+| [API](./api.md)                     | Endpoints & conventions               |

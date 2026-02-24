@@ -8,20 +8,21 @@ You are updating an existing feature document and tracking the change in a **Cha
 
 ## Instructions
 
-1. Ask the user for:
+1. Run `.cursor/scripts/get-docs-path.sh` to get the feature docs base path — if it fails, stop and suggest `/init-docs`
+2. Ask the user for:
    - **Feature path** — one of:
      - Simple feature: `"search"`, `"listing-detail"`
      - Sub-feature: `"listing/filter"`, `"listing/export"`
    - **Document type** to update: `requirements`, `design`, `implementation`, or `testing`
    - **What changed** (brief description of the update)
-2. Determine the doc path:
-   - Simple: `docs/features/{feature-name}/{doc-type}.md`
-   - Sub-feature: `docs/features/{parent}/{sub-feature}/{doc-type}.md`
-3. Read the target document at the determined path
-4. If the document does NOT exist, stop and warn the user — suggest using the corresponding `create-*` command instead
-5. Apply the requested changes to the document content
-6. Add or update the **Changelog** section at the top of the document (right after the YAML frontmatter and title)
-7. Save the updated document
+3. Determine the doc path:
+   - Simple: `{DOCS_PATH}/{feature-name}/{doc-type}.md`
+   - Sub-feature: `{DOCS_PATH}/{parent}/{sub-feature}/{doc-type}.md`
+4. Read the target document at the determined path
+5. If the document does NOT exist, stop and warn the user — suggest using the corresponding `create-*` command instead
+6. Apply the requested changes to the document content
+7. Add or update the **Changelog** section at the top of the document (right after the YAML frontmatter and title)
+8. Save the updated document
 
 ## Changelog Format
 
@@ -53,11 +54,13 @@ This keeps the document lean — the Changelog serves as the historical record, 
 
 ### Path Examples
 
-| Input            | Doc type       | Target path                                    |
-| ---------------- | -------------- | ---------------------------------------------- |
-| `search`         | `design`       | `docs/features/search/design.md`               |
-| `listing/filter` | `requirements` | `docs/features/listing/filter/requirements.md` |
-| `listing/export` | `design`       | `docs/features/listing/export/design.md`       |
+Given current version `v0.1.0` (major = `v0`):
+
+| Input            | Doc type       | Target path                                       |
+| ---------------- | -------------- | ------------------------------------------------- |
+| `search`         | `design`       | `docs/features/v0/search/design.md`               |
+| `listing/filter` | `requirements` | `docs/features/v0/listing/filter/requirements.md` |
+| `listing/export` | `design`       | `docs/features/v0/listing/export/design.md`       |
 
 ### Example
 

@@ -9,32 +9,36 @@ You are creating a **Testing Strategy** document for a feature or sub-feature.
 ## Instructions
 
 1. Read the template at `.cursor/templates/testing.md`
-2. Ask the user for:
+2. Run `.cursor/scripts/get-docs-path.sh` to get the feature docs base path — if it fails, stop and suggest `/init-docs`
+3. Ask the user for:
    - **Feature path** — one of:
      - Simple feature: `"search"`, `"listing-detail"`
      - Sub-feature: `"listing/filter"`, `"listing/export"`
-3. Determine the doc path:
-   - Simple: `docs/features/{feature-name}/`
-   - Sub-feature: `docs/features/{parent}/{sub-feature}/`
-4. Read the corresponding docs:
+4. Determine the doc path:
+   - Simple: `{DOCS_PATH}/{feature-name}/`
+   - Sub-feature: `{DOCS_PATH}/{parent}/{sub-feature}/`
+5. Check if this feature has a testing doc from a previous major version — if so, read it for context
+6. Read the corresponding docs:
    - Requirements: `{doc-path}/requirements.md`
    - Design: `{doc-path}/design.md`
    - Implementation: `{doc-path}/implementation.md`
-5. If this is a sub-feature:
-   - Check if parent-level `README.md` exists at `docs/features/{parent}/README.md`
+7. If this is a sub-feature:
+   - Check if parent-level `README.md` exists at `{DOCS_PATH}/{parent}/README.md`
    - If **missing**, warn the user and suggest running `/init-feature {parent}` first
    - If it exists, read it for context (scope, shared architecture, constraints)
-6. Analyze existing test patterns in the codebase
-7. Generate the testing document following the template structure
-8. Save to: `{doc-path}/testing.md`
+8. Analyze existing test patterns in the codebase
+9. Generate the testing document following the template structure
+10. Save to: `{doc-path}/testing.md`
 
 ## Path Examples
 
-| Input               | Save path                                      |
-| ------------------- | ---------------------------------------------- |
-| `search`            | `docs/features/search/testing.md`               |
-| `listing/filter`    | `docs/features/listing/filter/testing.md`       |
-| `listing/export`    | `docs/features/listing/export/testing.md`       |
+Given current version `v0.1.0` (major = `v0`):
+
+| Input               | Save path                                           |
+| ------------------- | --------------------------------------------------- |
+| `search`            | `docs/features/v0/search/testing.md`                 |
+| `listing/filter`    | `docs/features/v0/listing/filter/testing.md`         |
+| `listing/export`    | `docs/features/v0/listing/export/testing.md`         |
 
 ## Output Rules
 

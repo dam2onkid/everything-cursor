@@ -89,15 +89,21 @@ graph TD
 
 | Phase          | Document                              | Description                               |
 | -------------- | ------------------------------------- | ----------------------------------------- |
-| Requirements   | [Requirements](./requirements.md)     | Problem statement & success criteria       |
-| Design         | [Design](./design.md)                 | Architecture, data models & API design     |
-| Implementation | [Implementation](./implementation.md) | Task breakdown & technical implementation  |
-| Testing        | [Testing](./testing.md)               | Test strategy & quality assurance          |
+| Requirements   | [Requirements](./requirements.md)     | Problem statement & success criteria      |
+| Design         | [Design](./design.md)                 | Architecture, data models & API design    |
+| Implementation | [Implementation](./implementation.md) | Task breakdown & technical implementation |
+| Testing        | [Testing](./testing.md)               | Test strategy & quality assurance         |
+
+## Prior Version
+
+If this feature is an update from a previous version, reference the prior docs here:
+
+- **Previous version docs:** `docs/features/v{PREV_MAJOR}/{feature-name}/` (if applicable)
 
 ## Documentation Map
 
 ```
-docs/features/{feature-name}/
+docs/features/v{MAJOR}/{feature-name}/
 ├── README.md                              ← You are here (overview + scope + shared architecture)
 │
 ├── {sub-feature-1}/

@@ -29,36 +29,39 @@ One-paragraph description of what this application does, who it serves, and why 
 
 ## Project Status
 
-| Milestone | Status      | Target     |
-| --------- | ----------- | ---------- |
-| MVP       | In progress | YYYY-MM-DD |
-| v1.0      | Planned     | YYYY-MM-DD |
+> Live feature status is tracked in [`VERSION.md`](../VERSION.md). The table below is a high-level summary.
+
+| Version | Status      | Target     |
+| ------- | ----------- | ---------- |
+| v0.1.0  | In progress | YYYY-MM-DD |
+| v0.2.0  | Planned     | YYYY-MM-DD |
 
 ## Documentation Index
 
 ### Project-Level
 
-| Document                                 | Description                                 |
-| ---------------------------------------- | ------------------------------------------- |
-| [Architecture](./architecture.md)        | Tech stack, folder structure, patterns       |
-| [Design System](./design-system.md)      | UI/UX language, theme, component style       |
-| [Database](./database.md)                | Schema, ERD, relationships                   |
-| [API](./api.md)                          | Endpoints, conventions, auth patterns        |
-| [Roadmap](./roadmap.md)                  | MVP, versions, high-level milestones         |
+| Document                            | Description                               |
+| ----------------------------------- | ----------------------------------------- |
+| [VERSION.md](../VERSION.md)         | Current version, feature status, releases |
+| [Architecture](./architecture.md)   | Tech stack, folder structure, patterns    |
+| [Design System](./design-system.md) | UI/UX language, theme, component style    |
+| [Database](./database.md)           | Schema, ERD, relationships                |
+| [API](./api.md)                     | Endpoints, conventions, auth patterns     |
+| [Roadmap](./roadmap.md)             | Versions, high-level milestones           |
 
 ### Feature-Level
 
-| Feature   | Description       | Status      |
-| --------- | ----------------- | ----------- |
-| feature-1 | Brief description | Not started |
+| Version | Feature   | Description       | Status      |
+| ------- | --------- | ----------------- | ----------- |
+| v0      | feature-1 | Brief description | Not started |
 
-Feature docs live in `docs/features/{feature-name}/` — each contains requirements, design, implementation, and testing docs.
+Feature docs live in `docs/features/v{MAJOR}/{feature-name}/` — each contains requirements, design, implementation, and testing docs.
 
 ## Key Decisions
 
-| Decision        | Choice       | Rationale |
-| --------------- | ------------ | --------- |
-| Key decision 1  | What chosen  | Why       |
+| Decision       | Choice      | Rationale |
+| -------------- | ----------- | --------- |
+| Key decision 1 | What chosen | Why       |
 
 ## Constraints
 

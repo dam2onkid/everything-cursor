@@ -6,7 +6,30 @@ A batteries-included `.cursor` configuration for AI-assisted development. Provid
 
 ```bash
 git clone https://github.com/<your-org>/everything-cursor.git
-cp -r everything-cursor/.cursor /path/to/your-project/
+cd everything-cursor
+./setup.sh /path/to/your-project
+```
+
+The `setup.sh` script auto-discovers all files under `.cursor/` and copies them into the target project (creating it if needed). No hardcoded file lists — any new rules, commands, or templates you add are picked up automatically.
+
+### Options
+
+| Flag                      | Description                                   |
+| ------------------------- | --------------------------------------------- |
+| `-f, --force`             | Overwrite existing files without prompting    |
+| `-b, --backup`            | Backup existing `.cursor/` before overwriting |
+| `-d, --dry-run`           | Preview what would be copied                  |
+| `-e, --exclude <pattern>` | Exclude matching paths (repeatable)           |
+| `-i, --include <pattern>` | Copy only matching paths (repeatable)         |
+
+### Examples
+
+```bash
+./setup.sh ~/projects/my-app                                        # copy everything
+./setup.sh --dry-run ~/projects/my-app                              # preview first
+./setup.sh --backup --force ~/projects/my-app                       # backup then overwrite
+./setup.sh --exclude "rules/typescript" ~/projects/my-app           # skip TS rules
+./setup.sh --include "rules/common" --include "commands" ~/my-app   # only common rules + commands
 ```
 
 Open your project in Cursor and the rules, commands, and agents are ready to use.
@@ -267,12 +290,12 @@ The `agent-md-refactor` skill supports three modes:
 
 Scripts live in `.cursor/scripts/` and are called by commands to avoid repeating version/branch logic in every command prompt. Cross-platform: Linux, macOS, Windows (Git Bash / WSL / MSYS2).
 
-| Script                   | Output                  | Example          |
-| ------------------------ | ----------------------- | ---------------- |
-| `get-version.sh`         | Full SemVer version     | `v0.1.0`         |
-| `get-version.sh major`   | Major version only      | `v0`             |
-| `get-docs-path.sh`       | Feature docs base path  | `docs/features/v0` |
-| `get-default-branch.sh`  | Repo's default branch   | `main`           |
+| Script                  | Output                 | Example            |
+| ----------------------- | ---------------------- | ------------------ |
+| `get-version.sh`        | Full SemVer version    | `v0.1.0`           |
+| `get-version.sh major`  | Major version only     | `v0`               |
+| `get-docs-path.sh`      | Feature docs base path | `docs/features/v0` |
+| `get-default-branch.sh` | Repo's default branch  | `main`             |
 
 ## Templates
 

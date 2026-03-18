@@ -1,41 +1,46 @@
 ---
-description: Progressive disclosure for project documentation — read docs/overview.md as index before any task
+description: How to navigate project docs — fetch only what you need, when you need it
 alwaysApply: true
 ---
 
 # Documentation Context
 
-## Project-Level Docs
+## Two-Tier Model
 
-Before starting any task, check if `docs/overview.md` exists. If it does:
+Project docs have two levels. Understand which level you need before reading.
 
-1. Read `docs/overview.md` FIRST — it is the project index
-2. Read `VERSION.md` when you need the current version or feature statuses
-3. Navigate to specific docs ONLY when relevant to the current task:
-   - Architecture questions → `docs/architecture.md`
-   - UI/UX or styling → `docs/design-system.md`
-   - Database or data models → `docs/database.md`
-   - API endpoints or conventions → `docs/api.md`
-   - Roadmap or priorities → `docs/roadmap.md`
-4. Do NOT read all docs at once — progressive disclosure reduces context waste
+**Level 1 — Project docs** (`docs/`): Index and conventions. Lightweight summaries of stack, patterns, schema, endpoints, design tokens. Read these to understand the project's overall shape and rules.
 
-## Feature-Level Docs
+**Level 2 — Feature docs** (`docs/features/v{MAJOR}/{feature-name}/`): Detailed specs for a specific feature — requirements, design, implementation, testing. Read these only when working on that feature.
 
-Feature docs live in `docs/features/v{MAJOR}/{feature-name}/`:
-- `README.md` — feature overview and sub-feature index
-- `requirements.md`, `design.md`, `implementation.md`, `testing.md`
+## How to Fetch Context
 
-The `{MAJOR}` is the major version number from `VERSION.md` (e.g., `v0.1.0` → `v0`).
+1. **Always start** with `docs/overview.md` — it's the project index with key decisions and doc links
+2. **Read project docs on demand** — only the one relevant to your current task:
+   - Choosing tech patterns → `architecture.md`
+   - Making UI decisions → `design-system.md`
+   - Working with data → `database.md`
+   - Building/consuming APIs → `api.md`
+   - Prioritizing work → `roadmap.md`
+   - Checking version/status → `VERSION.md`
+3. **Read feature docs when working on a specific feature** — start with the feature's `README.md`, then only the phase doc you need (requirements, design, implementation, or testing)
+4. **Never read all docs at once** — each doc is self-contained at its level
 
-If a feature was carried over from a prior major version, its docs reference the old version at `docs/features/v{PREV_MAJOR}/{feature-name}/`.
+## Key Principle
 
-Read feature docs only when working on that specific feature.
+Project docs tell you the conventions. Feature docs tell you the specifics. If you're making a decision that affects the whole project, read project docs. If you're implementing a feature, read that feature's docs. Don't mix levels unnecessarily.
 
-## Documentation Hierarchy
+## Structure
 
 ```
-VERSION.md                       ← Current version, feature statuses, release history
-docs/overview.md                 ← Always read first (project index)
-docs/{architecture,design-system,database,api,roadmap}.md  ← Read on demand
-docs/features/v{MAJOR}/{name}/   ← Read when working on specific feature
+VERSION.md                              ← version, feature statuses
+docs/overview.md                        ← always read first (project index)
+docs/{architecture,design-system,       ← project conventions (read on demand)
+      database,api,roadmap}.md
+docs/features/v{MAJOR}/{name}/          ← feature details (read per feature)
+  ├── README.md                         ← feature overview + sub-feature index
+  ├── requirements.md                   ← problem, goals, success criteria
+  ├── design.md                         ← architecture, data models, UI
+  ├── implementation.md                 ← tasks, approach, notes
+  └── testing.md                        ← test cases, coverage
 ```

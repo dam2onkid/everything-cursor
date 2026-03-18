@@ -1,16 +1,10 @@
 ---
 phase: project-overview
 title: Project Overview
-description: Entry point for the entire project — concept, context, and index to all documentation
+description: Entry point — concept, stack, key decisions, and index to all docs
 ---
 
 # {Project Name}
-
-## Changelog
-
-| Date       | Action  | Summary          |
-| ---------- | ------- | ---------------- |
-| YYYY-MM-DD | Created | Initial creation |
 
 ## Concept
 
@@ -18,52 +12,38 @@ One-paragraph description of what this application does, who it serves, and why 
 
 ## Quick Reference
 
-| Item            | Value                    |
-| --------------- | ------------------------ |
-| Package Manager | npm / pnpm / yarn        |
-| Language        | TypeScript / Python / Go |
-| Framework       | Next.js / Flutter / etc  |
-| Build           | `command`                |
-| Dev             | `command`                |
-| Test            | `command`                |
-
-## Project Status
-
-> Live feature status is tracked in [`VERSION.md`](../VERSION.md). The table below is a high-level summary.
-
-| Version | Status      | Target     |
-| ------- | ----------- | ---------- |
-| v0.1.0  | In progress | YYYY-MM-DD |
-| v0.2.0  | Planned     | YYYY-MM-DD |
-
-## Documentation Index
-
-### Project-Level
-
-| Document                            | Description                               |
-| ----------------------------------- | ----------------------------------------- |
-| [VERSION.md](../VERSION.md)         | Current version, feature status, releases |
-| [Architecture](./architecture.md)   | Tech stack, folder structure, patterns    |
-| [Design System](./design-system.md) | UI/UX language, theme, component style    |
-| [Database](./database.md)           | Schema, ERD, relationships                |
-| [API](./api.md)                     | Endpoints, conventions, auth patterns     |
-| [Roadmap](./roadmap.md)             | Versions, high-level milestones           |
-
-### Feature-Level
-
-| Version | Feature   | Description       | Status      |
-| ------- | --------- | ----------------- | ----------- |
-| v0      | feature-1 | Brief description | Not started |
-
-Feature docs live in `docs/features/v{MAJOR}/{feature-name}/` — each contains requirements, design, implementation, and testing docs.
+| Item      | Value                    |
+| --------- | ------------------------ |
+| Language  | TypeScript / Python / Go |
+| Framework | Next.js / Flutter / etc  |
+| Database  | PostgreSQL / SQLite      |
+| Build     | `command`                |
+| Dev       | `command`                |
+| Test      | `command`                |
 
 ## Key Decisions
 
-| Decision       | Choice      | Rationale |
-| -------------- | ----------- | --------- |
-| Key decision 1 | What chosen | Why       |
+Decisions that shape how the LLM (and developers) should approach this codebase.
 
-## Constraints
+| Decision | Choice | Why |
+| -------- | ------ | --- |
+|          |        |     |
 
-- Technical constraints that affect the entire project
-- Business constraints and timeline pressures
+## Documentation Index
+
+| Document                            | When to read                         |
+| ----------------------------------- | ------------------------------------ |
+| [VERSION.md](../VERSION.md)         | Version, feature status, releases    |
+| [Architecture](./architecture.md)   | Tech patterns, folder structure      |
+| [Design System](./design-system.md) | UI principles, tokens, components    |
+| [Database](./database.md)           | Schema, ERD, relationships           |
+| [API](./api.md)                     | Endpoints, auth, response format     |
+| [Roadmap](./roadmap.md)             | What's next, priorities              |
+
+### Features
+
+Feature docs: `docs/features/v{MAJOR}/{feature-name}/`
+
+| Feature   | Description       | Status      |
+| --------- | ----------------- | ----------- |
+| feature-1 | Brief description | Not started |

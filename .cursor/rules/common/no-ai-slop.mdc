@@ -1,0 +1,101 @@
+---
+description: Avoid generic AI aesthetics when generating frontend code or design docs — commit to intentional, distinctive design
+globs:
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "**/*.vue"
+  - "**/*.svelte"
+  - "**/*.css"
+  - "**/*.scss"
+  - "**/*.html"
+  - "**/design-system.md"
+  - "**/design.md"
+---
+
+# No AI Slop
+
+When generating UI code, styling, or design documentation, produce work that feels intentionally designed — not generically AI-generated.
+
+## Design Thinking First
+
+Before writing any UI code, answer:
+
+1. **What is the purpose?** Who uses this, what do they feel?
+2. **What is the aesthetic direction?** Commit to one bold direction and execute it fully
+3. **What makes it memorable?** One distinctive choice > ten safe defaults
+
+## Typography
+
+DO:
+
+- Choose distinctive, characterful fonts (Google Fonts has thousands — use them)
+- Pair a display font with a complementary body font
+- Create clear hierarchy through size, weight, and spacing contrast
+
+DO NOT:
+
+- Default to Inter, Roboto, Arial, Space Grotesk, or system fonts
+- Use more than 2 font families without a reason
+- Apply uniform sizing with no visual hierarchy
+
+## Color
+
+DO:
+
+- Design a cohesive palette with a dominant color and sharp accents
+- Use CSS variables for consistency
+- Give every color a role and a rationale
+
+DO NOT:
+
+- Use purple gradients on white backgrounds (the universal AI slop signal)
+- Distribute colors evenly so nothing stands out
+- Use framework defaults as-is (Tailwind blue-500, Bootstrap primary)
+
+## Layout & Composition
+
+DO:
+
+- Consider asymmetry, overlap, editorial grids, or intentional density
+- Use generous negative space OR controlled information density — pick one
+- Break predictable patterns when it serves the content
+
+DO NOT:
+
+- Default to centered-card-stack layouts
+- Create cookie-cutter grids with uniform spacing everywhere
+- Ignore spatial relationships between related elements
+
+## Motion & Depth
+
+DO:
+
+- Add staggered entrance animations where they communicate hierarchy
+- Use hover states that feel responsive and intentional
+- Create depth with shadows, layers, or transparency when appropriate
+
+DO NOT:
+
+- Add animation for decoration — every motion must communicate something
+- Use flat solid backgrounds when texture/gradient would create atmosphere
+- Apply identical transitions to everything
+
+## Implementation Matching
+
+Match code complexity to the aesthetic vision:
+
+- **Maximalist design** → elaborate animations, layered effects, rich interactions
+- **Minimalist design** → precision, restraint, meticulous spacing and typography
+- Elegance = executing the vision well, not applying a formula
+
+## When This Rule Applies
+
+- Building new components or pages
+- Styling existing components
+- Filling in design-system.md or design.md templates
+- Creating HTML/CSS prototypes or demos
+- Any task where visual output matters
+
+## Reference
+
+Read `docs/design-system.md` for project-specific tokens and direction before generating UI code. If no design system exists yet, propose one that follows these principles rather than falling back to generic defaults.

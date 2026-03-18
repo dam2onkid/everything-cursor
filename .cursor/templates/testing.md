@@ -1,99 +1,49 @@
 ---
 phase: testing
-title: Testing Strategy
-description: Define testing approach, test cases, and quality assurance
+title: Testing
+description: What to verify, edge cases, and current status
+context: [requirements.md]
 ---
 
-# Testing Strategy
+# Testing
 
-## Changelog
+## Coverage Goal
 
-| Date       | Action  | Summary          |
-| ---------- | ------- | ---------------- |
-| YYYY-MM-DD | Created | Initial creation |
+80% minimum (enforced by `testing.mdc` rule). Focus coverage on business logic and critical paths.
 
-## Test Coverage Goals
+## Key Scenarios
 
-- Unit test coverage target: X%
-- Integration test scope: critical paths + error handling
-- E2E test scenarios: key user journeys
+Group by whatever makes sense for the feature (by flow, by component, by risk area). Each scenario should trace back to a user story or success criterion in requirements.md.
 
-## Unit Tests
+### Happy paths
 
-### Component/Module 1
+- [ ] Scenario: expected input produces expected output
+- [ ] Scenario: ...
 
-- [ ] Test case 1: [Description]
-- [ ] Test case 2: [Description]
+### Error paths
 
-### Component/Module 2
+- [ ] Scenario: invalid input returns clear error
+- [ ] Scenario: dependency failure is handled gracefully
 
-- [ ] Test case 1: [Description]
-- [ ] Test case 2: [Description]
+## Edge Cases & Boundaries
 
-## Integration Tests
+What breaks at the limits? Think: empty inputs, max values, concurrent access, missing permissions, network failures.
 
-- [ ] API endpoint: `METHOD /path` — expected status, response shape
-- [ ] Integration scenario 1
-- [ ] Integration scenario 2
-
-## End-to-End Tests
-
-- [ ] User flow 1: [Description]
-- [ ] User flow 2: [Description]
-
-## Test Data
-
-- Fixtures and mocks
-- Seed data requirements
-
-## API Endpoint Tests (curl)
-
-Endpoints to test with `/run-tests`. Each entry becomes a curl command.
-
-| Method | Path   | Body / Params | Expected Status | Expected Response |
-| ------ | ------ | ------------- | --------------- | ----------------- |
-| GET    | /path  | —             | 200             | `{ ... }`         |
-| POST   | /path  | `{ ... }`     | 201             | `{ ... }`         |
-
-## Manual Testing
-
-- UI/UX checklist (include accessibility)
-- Browser/device compatibility
-
-## Performance Testing
-
-| Endpoint | Threshold | Notes |
-| -------- | --------- | ----- |
-| /path    | <200ms    |       |
+- [ ] ...
+- [ ] ...
 
 ## Last Run Results
 
 > Updated automatically by `/run-tests`. Do not edit manually.
 
-| Metric              | Value |
-| ------------------- | ----- |
-| Date                |       |
-| Total tests         |       |
-| Passed              |       |
-| Failed              |       |
-| Coverage            |       |
-| API endpoints tested|       |
-| API passed          |       |
-| API failed          |       |
-| Fixes applied       |       |
-
-### Fixes Applied
-
-_None yet._
+| Metric               | Value |
+| -------------------- | ----- |
+| Date                 |       |
+| Total tests          |       |
+| Passed               |       |
+| Failed               |       |
+| Coverage             |       |
 
 ### Remaining Issues
 
 _None yet._
-
-## Related Documents
-
-| Document                          | Description                                          |
-| --------------------------------- | ---------------------------------------------------- |
-| [Requirements](./requirements.md) | Problem statement & success criteria                 |
-| [Design](./design.md)             | Architecture, data models & API design               |
-| [Implementation](./implementation.md) | Task breakdown & technical implementation        |

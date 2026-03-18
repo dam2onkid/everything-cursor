@@ -1,44 +1,39 @@
 ---
 phase: overview
 title: Feature Overview
-description: Single parent-level doc for a complex feature — overview, scope, shared architecture, and sub-feature index
+description: Index doc — what this feature is, what's in/out, how sub-features connect
+context: [docs/overview.md]
 ---
 
 # {Feature Name} — Overview
 
-## Changelog
-
-| Date       | Action  | Summary          |
-| ---------- | ------- | ---------------- |
-| YYYY-MM-DD | Created | Initial creation |
-
 ## Summary
 
-- Brief description of the feature
-- Why it exists and what value it delivers
+What does this feature do, and why does it exist?
+
+- Core capability in one sentence
+- Who uses it and what value they get
+- How it fits into the broader product
 
 ## Sub-Features
 
 | Sub-Feature   | Description       | Status                           |
 | ------------- | ----------------- | -------------------------------- |
 | sub-feature-1 | Brief description | Not started / In progress / Done |
-| sub-feature-2 | Brief description | Not started / In progress / Done |
 
-## Scope & Boundaries
+## Scope
 
 **In scope:**
 
-- ...
+- Capabilities this feature will deliver
 
 **Out of scope:**
 
-- ...
-
-**Future considerations:**
-
-- ...
+- What this feature explicitly will NOT do (prevents scope creep)
 
 ## User Flows
+
+How users move through the feature. Update the diagram to reflect actual entry points, decision branches, and outcomes.
 
 ```mermaid
 graph LR
@@ -46,75 +41,4 @@ graph LR
     A --> C[Sub-Feature 2]
     B --> D[Outcome]
     C --> D
-```
-
-## Shared Architecture
-
-High-level overview of how sub-features connect. No implementation details — those live in sub-feature docs.
-
-```mermaid
-graph TD
-    A[Entry] --> B[Sub-Feature 1]
-    A --> C[Sub-Feature 2]
-    B --> D[Shared Layer]
-    C --> D
-```
-
-| Decision                   | Choice          | Rationale |
-| -------------------------- | --------------- | --------- |
-| Key architectural decision | What was chosen | Why       |
-
-## Shared Constraints
-
-**Technical:**
-
-- Tech stack, platform constraints
-- Shared dependencies (APIs, modules, models)
-
-**Performance:**
-
-| Metric     | Target       |
-| ---------- | ------------ |
-| Key metric | Target value |
-
-**Security / Accessibility:**
-
-- Brief shared NFRs that apply to all sub-features
-
-## Open Questions
-
-- Unresolved items requiring stakeholder input
-
-## Related Documents
-
-| Phase          | Document                              | Description                               |
-| -------------- | ------------------------------------- | ----------------------------------------- |
-| Requirements   | [Requirements](./requirements.md)     | Problem statement & success criteria      |
-| Design         | [Design](./design.md)                 | Architecture, data models & API design    |
-| Implementation | [Implementation](./implementation.md) | Task breakdown & technical implementation |
-| Testing        | [Testing](./testing.md)               | Test strategy & quality assurance         |
-
-## Prior Version
-
-If this feature is an update from a previous version, reference the prior docs here:
-
-- **Previous version docs:** `docs/features/v{PREV_MAJOR}/{feature-name}/` (if applicable)
-
-## Documentation Map
-
-```
-docs/features/v{MAJOR}/{feature-name}/
-├── README.md                              ← You are here (overview + scope + shared architecture)
-│
-├── {sub-feature-1}/
-│   ├── requirements.md
-│   ├── design.md
-│   ├── implementation.md
-│   └── testing.md
-│
-└── {sub-feature-2}/
-    ├── requirements.md
-    ├── design.md
-    ├── implementation.md
-    └── testing.md
 ```

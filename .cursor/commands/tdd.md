@@ -211,11 +211,11 @@ export function calculateLiquidityScore(market: MarketData): number {
   const spreadScore = clamp(
     100 - market.bidAskSpread * SCALE_FACTORS.SPREAD,
     0,
-    100,
+    100
   );
   const traderScore = Math.min(
     market.activeTraders / SCALE_FACTORS.TRADERS,
-    100,
+    100
   );
 
   const hoursSinceLastTrade =
@@ -223,7 +223,7 @@ export function calculateLiquidityScore(market: MarketData): number {
   const recencyScore = clamp(
     100 - hoursSinceLastTrade * SCALE_FACTORS.RECENCY_PENALTY,
     0,
-    100,
+    100
   );
 
   const weightedScore =
@@ -334,8 +334,8 @@ Never skip the RED phase. Never write code before tests.
 ## Related Agents
 
 This command invokes the `tdd-guide` agent located at:
-`~/.claude/agents/tdd-guide.md`
+`~/.cursor/agents/tdd-guide.md`
 
 And can reference the `tdd-workflow` skill at:
-`~/.claude/skills/tdd-workflow/`
+`~/.cursor/skills/tdd-workflow/`
 ```

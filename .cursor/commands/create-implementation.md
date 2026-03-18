@@ -1,10 +1,10 @@
 ---
-description: Create an implementation plan document for a feature or sub-feature
+description: Create an implementation document for a feature or sub-feature
 ---
 
 # Create Implementation Document
 
-You are creating a **Planning & Implementation Guide** document for a feature or sub-feature.
+You are creating an **Implementation** document for a feature or sub-feature.
 
 ## Instructions
 
@@ -21,10 +21,11 @@ You are creating a **Planning & Implementation Guide** document for a feature or
 6. Read the corresponding docs:
    - Requirements: `{doc-path}/requirements.md`
    - Design: `{doc-path}/design.md`
+   - UI Design: `{doc-path}/ui-design.md` (if it exists)
 7. If this is a sub-feature:
    - Check if parent-level `README.md` exists at `{DOCS_PATH}/{parent}/README.md`
    - If **missing**, warn the user and suggest running `/init-feature {parent}` first
-   - If it exists, read it for context (scope, shared architecture, constraints)
+   - If it exists, read it for context (scope, user flows)
 8. Analyze existing codebase structure and patterns for the target module
 9. Generate the implementation document following the template structure
 10. Save to: `{doc-path}/implementation.md`
@@ -33,20 +34,18 @@ You are creating a **Planning & Implementation Guide** document for a feature or
 
 Given current version `v0.1.0` (major = `v0`):
 
-| Input            | Save path                                             |
-| ---------------- | ----------------------------------------------------- |
-| `search`         | `docs/features/v0/search/implementation.md`           |
-| `listing/filter` | `docs/features/v0/listing/filter/implementation.md`   |
-| `listing/export` | `docs/features/v0/listing/export/implementation.md`   |
+| Input            | Save path                                           |
+| ---------------- | --------------------------------------------------- |
+| `search`         | `docs/features/v0/search/implementation.md`         |
+| `listing/filter` | `docs/features/v0/listing/filter/implementation.md` |
 
 ## Output Rules
 
-- Follow the exact template structure from `.cursor/templates/implementation.md`
+- Follow the template structure from `.cursor/templates/implementation.md`
 - Requirements and design docs MUST exist before creating implementation — warn if missing
-- Break tasks into concrete, actionable items with checkboxes
-- Reference specific files/directories from the existing codebase
-- Follow established code patterns (Clean Architecture + MVVM for app)
-- Include dependency graph between tasks
-- Estimate effort per task/phase
-- Document error handling and security considerations
-- For sub-features: reference the parent feature implementation context where relevant
+- Break tasks into concrete, actionable items with status markers
+- Note blockers inline in tasks (use `[!]` marker) rather than a separate dependencies section
+- Reference specific files/directories from the existing codebase where relevant
+- Follow established project patterns (see `docs/architecture.md`)
+- Implementation Notes section: capture non-obvious gotchas, not things already covered by cursor rules (security, error handling, patterns are handled by always-applied rules)
+- For sub-features: reference the parent feature context where relevant

@@ -1,113 +1,66 @@
 ---
 phase: design
-title: System Design & Architecture
-description: Define the technical architecture, components, and data models
+title: Design
+description: How it's built, why these choices, and what to avoid
+context: [docs/architecture.md, docs/api.md]
 ---
 
-# System Design & Architecture
+# Design
 
-## Changelog
+## Architecture
 
-| Date       | Action  | Summary          |
-| ---------- | ------- | ---------------- |
-| YYYY-MM-DD | Created | Initial creation |
+How does this feature fit into the system? Show the main components, their responsibilities, and how they connect.
 
-## Architecture Overview
-
-**What is the high-level system structure?**
-
-- Include a mermaid diagram that captures the main components and their relationships. Example:
-  ```mermaid
-  graph TD
+```mermaid
+graph TD
     Client -->|HTTPS| API
     API --> ServiceA
     API --> ServiceB
     ServiceA --> Database[(DB)]
-  ```
-- Key components and their responsibilities
-- Technology stack choices and rationale
+```
+
+| Component | Responsibility | Tech |
+| --------- | -------------- | ---- |
+|           |                |      |
 
 ## Data Models
 
-**What data do we need to manage?**
+What data does this feature manage?
 
-- Core entities and their relationships
-- Data schemas/structures
-- Data flow between components
+- Core entities with key fields and types
+- Relationships between entities (1:1, 1:N, M:N)
+- Data flow: where data enters, transforms, and persists
 
-## API Design
+## Interfaces
 
-**How do components communicate?**
+How do components communicate?
 
-- External APIs (if applicable)
-- Internal interfaces
-- Request/response formats
-- Authentication/authorization approach
+**External APIs** (if this feature exposes endpoints):
 
-## Visual Design
+| Method | Path | Purpose | Auth |
+| ------ | ---- | ------- | ---- |
+|        |      |         |      |
 
-**What does it look like?**
-
-- ASCII wireframe or mockup for key screens/pages:
-
-```
-┌─────────────────────────────────────────────────┐
-│  [Header / Navigation]                          │
-├─────────────────────────────────────────────────┤
-│                                                 │
-│  [Main Content Area]                            │
-│                                                 │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐      │
-│  │  Item 1  │  │  Item 2  │  │  Item 3  │      │
-│  └──────────┘  └──────────┘  └──────────┘      │
-│                                                 │
-├─────────────────────────────────────────────────┤
-│  [Footer / Bottom Navigation]                   │
-└─────────────────────────────────────────────────┘
-```
-
-- Screen/page flow diagram (user journey between screens):
-
-```mermaid
-graph LR
-    A[Screen A] --> B[Screen B]
-    B --> C[Screen C]
-    B --> D[Screen D]
-```
-
-- Key UI states: default, loading, empty, error, success
-
-## Component Breakdown
-
-**What are the major building blocks?**
-
-- Frontend components (if applicable)
-- Backend services/modules
-- Database/storage layer
-- Third-party integrations
+**Internal interfaces** between modules (function signatures, events, messages).
 
 ## Design Decisions
 
-**Why did we choose this approach?**
+Key decisions that shape implementation. Each row = one decision the LLM must respect.
 
-- Key architectural decisions and trade-offs
-- Alternatives considered
-- Patterns and principles applied
+| Decision | Choice | Trade-offs / Why |
+| -------- | ------ | ---------------- |
+|          |        |                  |
 
-## Non-Functional Requirements
+## Constraints
 
-**How should the system perform?**
+Technical, performance, or business constraints specific to this feature.
 
-- Performance targets
-- Scalability considerations
-- Security requirements
-- Reliability/availability needs
+| Constraint | Target    | Rationale |
+| ---------- | --------- | --------- |
+|            |           |           |
 
-## Related Documents
+## Avoid
 
-| Document                                  | Description                                         |
-| ----------------------------------------- | --------------------------------------------------- |
-| [Feature Overview](./feature-overview.md) | Parent overview, scope & sub-feature index            |
-| [Requirements](./requirements.md)         | Problem statement & success criteria (← previous)    |
-| [Implementation](./implementation.md)     | Task breakdown & technical implementation (next →)    |
-| [Testing](./testing.md)                   | Test strategy & quality assurance                     |
+Anti-patterns and wrong approaches for this feature. What NOT to do and why.
+
+- ...

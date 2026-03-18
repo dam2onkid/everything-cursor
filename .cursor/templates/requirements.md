@@ -1,71 +1,52 @@
 ---
 phase: requirements
-title: Requirements & Problem Understanding
-description: Clarify the problem space, gather requirements, and define success criteria
+title: Requirements
+description: What we're solving, what matters most, and how we know it's done
+context: [docs/overview.md]
 ---
 
-# Requirements & Problem Understanding
+# Requirements
 
-## Changelog
+## Problem
 
-| Date       | Action  | Summary          |
-| ---------- | ------- | ---------------- |
-| YYYY-MM-DD | Created | Initial creation |
+What problem are we solving?
 
-## Problem Statement
+- Who is affected (user type, persona, or role)
+- What pain they experience today
+- Current workaround (if any) and why it's insufficient
 
-**What problem are we solving?**
+## Goals
 
-- Describe the core problem or pain point
-- Who is affected by this problem?
-- What is the current situation/workaround?
+What does success look like?
 
-## Goals & Objectives
+**Primary goals:**
 
-**What do we want to achieve?**
+- ...
 
-- Primary goals
-- Secondary goals
-- Non-goals (what's explicitly out of scope)
+**Non-goals (explicitly out of scope):**
 
-## User Stories & Use Cases
+- ...
 
-**How will users interact with the solution?**
+## User Stories
 
-- As a [user type], I want to [action] so that [benefit]
-- Key workflows and scenarios
-- Edge cases to consider
+| Priority | Story                                           | Acceptance Criteria      |
+| -------- | ----------------------------------------------- | ------------------------ |
+| Must     | As a [user], I want [action] so that [benefit]  | What proves this works   |
+| Should   | As a [user], I want [action] so that [benefit]  | What proves this works   |
+| Could    | As a [user], I want [action] so that [benefit]  | What proves this works   |
+
+> Priority: **Must** = launch blocker, **Should** = expected but deferrable, **Could** = nice-to-have
 
 ## Success Criteria
 
-**How will we know when we're done?**
+How do we measure that this feature is working?
 
-- Measurable outcomes
-- Acceptance criteria
-- Performance benchmarks (if applicable)
+- Functional: what behavior must be observable
+- Performance: response time, throughput (if applicable)
+- Quality: error rate, edge case handling
 
-## Constraints & Assumptions
+## Open Questions
 
-**What limitations do we need to work within?**
+Unresolved items that block or influence design/implementation decisions.
 
-- Technical constraints
-- Business constraints
-- Time/budget constraints
-- Assumptions we're making
-
-## Questions & Open Items
-
-**What do we still need to clarify?**
-
-- Unresolved questions
-- Items requiring stakeholder input
-- Research needed
-
-## Related Documents
-
-| Document                                  | Description                                    |
-| ----------------------------------------- | ---------------------------------------------- |
-| [Feature Overview](./feature-overview.md) | Parent overview, scope & sub-feature index      |
-| [Design](./design.md)                     | Architecture, data models & API design (next →) |
-| [Implementation](./implementation.md)     | Task breakdown & technical implementation       |
-| [Testing](./testing.md)                   | Test strategy & quality assurance               |
+- [ ] Question — who needs to answer, by when

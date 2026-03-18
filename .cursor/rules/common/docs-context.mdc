@@ -23,7 +23,7 @@ Project docs have two levels. Understand which level you need before reading.
    - Building/consuming APIs → `api.md`
    - Prioritizing work → `roadmap.md`
    - Checking version/status → `VERSION.md`
-3. **Read feature docs when working on a specific feature** — start with the feature's `README.md`, then only the phase doc you need (requirements, design, implementation, or testing)
+3. **Read feature docs when working on a specific feature** — start with the feature's `README.md`, then only the phase doc you need (requirements, design, ui-design, implementation, or testing)
 4. **Never read all docs at once** — each doc is self-contained at its level
 
 ## Key Principle
@@ -40,7 +40,8 @@ docs/{architecture,design-system,       ← project conventions (read on demand)
 docs/features/v{MAJOR}/{name}/          ← feature details (read per feature)
   ├── README.md                         ← feature overview + sub-feature index
   ├── requirements.md                   ← problem, goals, success criteria
-  ├── design.md                         ← architecture, data models, UI
+  ├── design.md                         ← architecture, data models, decisions
+  ├── ui-design.md                     ← visual layout, wireframes (optional, UI features only)
   ├── implementation.md                 ← tasks, approach, notes
   └── testing.md                        ← test cases, coverage
 ```

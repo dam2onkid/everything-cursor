@@ -13,7 +13,7 @@ You are updating an existing feature document and tracking the change in a **Cha
    - **Feature path** — one of:
      - Simple feature: `"search"`, `"listing-detail"`
      - Sub-feature: `"listing/filter"`, `"listing/export"`
-   - **Document type** to update: `requirements`, `design`, `implementation`, or `testing`
+   - **Document type** to update: `requirements`, `design`, `ui-design`, `implementation`, or `testing`
    - **What changed** (brief description of the update)
 3. Determine the doc path:
    - Simple: `{DOCS_PATH}/{feature-name}/{doc-type}.md`

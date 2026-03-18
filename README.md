@@ -5,7 +5,7 @@ A batteries-included `.cursor` configuration for AI-assisted development. Provid
 ## Setup
 
 ```bash
-git clone https://github.com/<your-org>/everything-cursor.git
+git clone https://github.com/dam2onkid/everything-cursor.git
 cd everything-cursor
 ./setup.sh /path/to/your-project
 ```

@@ -70,14 +70,48 @@ Run these in Cursor chat with `/command-name`.
 
 ## Workflows
 
-### Project Documentation
+### Full Lifecycle Overview
 
-Initialize and maintain project-level docs that give the AI full context about your codebase.
+```mermaid
+graph TD
+    A["/init-docs"] -->|generates| B["VERSION.md + docs/"]
+    B --> C{New feature?}
+    C -->|yes| D["/init-feature {name}"]
+    D -->|creates branch + README| E["/create-requirements"]
+    E --> F["/create-design"]
+    F --> G["/create-implementation"]
+    G --> H["/create-testing"]
+    H --> I["Build & Test"]
+    I --> J["/tdd"]
+    I --> K["/code-review"]
+    J --> K
+    K --> L["/pr"]
+    L -->|merge + status=done| M{All features done?}
+    M -->|no| C
+    M -->|yes| N["/ship-version"]
+    N -->|tag + advance version| C
+
+    B -.->|after code changes| O["/sync-project-docs"]
+    O -.->|updates outdated docs| B
+
+    style A fill:#4CAF50,color:#fff
+    style N fill:#FF9800,color:#fff
+    style L fill:#2196F3,color:#fff
+```
+
+---
+
+### Step 1 — Initialize Project Docs
+
+Run once at project start. Analyzes your codebase and generates `VERSION.md` + 6 project-level docs.
 
 ```
 /init-docs
-    │  generates VERSION.md + 6 docs from codebase analysis
-    ▼
+```
+
+Output:
+
+```
 VERSION.md               ← current version, feature statuses, release history
 docs/
 ├── overview.md          ← project index (AI reads this first)
@@ -88,94 +122,160 @@ docs/
 └── roadmap.md           ← versions, milestones, priorities
 ```
 
-After code changes, sync docs to keep them current:
+Keep docs in sync after code changes:
 
 ```
 /sync-project-docs
 ```
 
-Detects drift between documentation/VERSION.md and code, updates outdated sections, preserves user-written prose, and adds changelog entries.
+Detects drift between docs and code, updates outdated sections, preserves user-written prose, and adds changelog entries. The `docs-context` rule ensures the AI reads `docs/overview.md` first before any task — progressive disclosure to reduce context waste.
 
-The `docs-context` rule (always applied) ensures the AI reads `docs/overview.md` first as the project index before any task, then navigates to specific docs on demand — progressive disclosure to reduce context waste.
+---
 
-### Feature Documentation
+### Step 2 — Plan a Feature
 
-The commands follow a sequential workflow for documenting and building features. Feature doc paths use the **major version** only (`v0`, `v1`, `v2`), extracted from the current SemVer in `VERSION.md`.
+Feature doc paths use the **major version** only (`v0`, `v1`, `v2`), extracted from the current SemVer in `VERSION.md`.
+
+```mermaid
+graph LR
+    A["/init-feature"] --> B["/create-requirements"]
+    B --> C["/create-design"]
+    C --> D["/create-implementation"]
+    D --> E["/create-testing"]
+
+    style A fill:#4CAF50,color:#fff
+    style E fill:#2196F3,color:#fff
+```
+
+**2a. Initialize feature** — creates branch, README, and VERSION.md entry:
 
 ```
 /init-feature {name}
-       │  creates docs/features/v{MAJOR}/{name}/README.md
-       │  switches to feat/{version}/{name} branch (from default branch)
-       │  adds feature to VERSION.md with not-started status
-       │  if feature existed in prior major version, references old docs
-       ▼
-/create-requirements {name}
-       │
-       ▼
-/create-design {name}
-       │
-       ▼
-/create-implementation {name}
-       │
-       ▼
-/create-testing {name}
 ```
 
-### Versioning & Shipping
+What happens:
+- Creates `docs/features/v{MAJOR}/{name}/README.md`
+- Switches to `feat/{version}/{name}` branch (from default branch)
+- Adds feature to `VERSION.md` with `not-started` status
+- If feature existed in a prior major version, references old docs
 
-All versions follow SemVer (`vMAJOR.MINOR.PATCH`). Initial development starts at `v0.1.0`.
+**2b. Create docs** — run each command in order, providing detailed context:
 
 ```
-default branch ──┬── feat/v0.1.0/auth ──── /pr ──→ merge + VERSION.md: auth=done
-                  ├── feat/v0.1.0/search ── /pr ──→ merge + VERSION.md: search=done
-                  │
-                  └── /ship-version ──→ git tag v0.1.0, advance VERSION.md to v0.2.0
+/create-requirements {name}     ← problem, goals, user stories, success criteria
+/create-design {name}           ← architecture, data models, design decisions
+/create-implementation {name}   ← task breakdown, phases, approach
+/create-testing {name}          ← test scenarios, coverage plan, edge cases
 ```
 
-- `/pr` merges the feature branch into the default branch and marks the feature as `done` in `VERSION.md`
-- `/ship-version` validates all features are done, creates a git tag, auto-suggests the next SemVer bump, and advances `VERSION.md`
+> **Tip**: The more context you provide, the better the output. Don't just pass a name — describe **what the feature does, who it's for, and any constraints**. See [Examples](#examples) below.
 
-### Pull Request
+---
+
+### Step 3 — Build & Test
+
+Use `/tdd` for test-driven development and `/code-review` for quality checks.
+
+```mermaid
+graph LR
+    A["/tdd"] -->|"RED → GREEN → REFACTOR"| B["Implementation"]
+    B --> C["/code-review"]
+    C -->|issues found| B
+    C -->|all clear| D["Ready for PR"]
+
+    style A fill:#f44336,color:#fff
+    style D fill:#4CAF50,color:#fff
+```
+
+**TDD session** — scaffolds interfaces, writes tests first, then implements:
+
+```
+/tdd
+I need a function to validate Vietnamese phone numbers.
+- Accept 10-digit format: 0xx-xxx-xxxx
+- Support all carriers: Viettel (032-039), Mobifone (070-079), Vinaphone (081-089)
+- Return { valid: boolean, carrier: string | null, normalized: string }
+- Throw on non-string input
+```
+
+**Code review** — no arguments needed, automatically reviews all uncommitted changes:
+
+```
+/code-review
+```
+
+Checks security (credentials, injection, XSS, validation), code quality (line limits, nesting, error handling), and blocks commit on CRITICAL/HIGH issues.
+
+---
+
+### Step 4 — PR & Ship
+
+```mermaid
+graph LR
+    A["feature branch"] -->|"/pr"| B["PR → merge to default"]
+    B -->|"VERSION.md: feature=done"| C{All features done?}
+    C -->|yes| D["/ship-version"]
+    D -->|"git tag + advance version"| E["Next cycle"]
+    C -->|no| F["Continue other features"]
+
+    style D fill:#FF9800,color:#fff
+    style B fill:#2196F3,color:#fff
+```
+
+**Create PR** — syncs all docs, commits, pushes, and opens a PR:
 
 ```
 /pr
 ```
 
-Automatically syncs project docs and feature docs (if they exist), updates `VERSION.md` feature status, commits doc changes, then creates a PR targeting the default branch.
+What happens:
+1. Syncs project docs (if `docs/overview.md` exists)
+2. Syncs feature docs (if matching feature directory exists)
+3. Sets feature status to `done` in `VERSION.md`
+4. Commits doc changes, pushes, and creates PR targeting the default branch
 
-### Tips: provide detailed requirements
-
-The more context you give with a command, the better the output. Don't just pass a name — describe **what the feature does, who it's for, and any constraints**.
-
-**Bad** (vague, produces generic docs):
+**Ship a version** — after all features in the current version are `done`:
 
 ```
+/ship-version
+```
+
+What happens:
+1. Validates all features are `done`
+2. Creates an annotated git tag (e.g., `v0.1.0`)
+3. Auto-suggests the next SemVer bump
+4. Advances `VERSION.md` to the next version
+
+All versions follow SemVer (`vMAJOR.MINOR.PATCH`). Initial development starts at `v0.1.0`.
+
+---
+
+### Updating Existing Docs
+
+```
+/update-feature-docs {name}
+<describe what changed and why>
+```
+
+Prompts you for which doc type to update. Automatically adds a changelog entry. Old content is replaced (not appended) — the changelog serves as the historical record.
+
+---
+
+### Examples
+
+#### Simple feature
+
+```
+/init-feature search
+
 /create-requirements search
-```
-
-**Good** (specific, produces actionable docs):
-
-```
-/create-requirements search
-
 Full-text and semantic search for marketplace listings.
 - Users can search by title, description, tags, and seller name
 - Results ranked by relevance with optional filters (price range, category, date)
 - Must support Vietnamese diacritics and fuzzy matching
-- Autocomplete suggestions as user types (debounced 300ms)
-- Mobile-first, must work offline with cached recent searches
 - Target: <200ms response time for 500k listings
-```
-
-### Simple feature
-
-```
-/create-requirements search
-<describe what search does, who uses it, constraints, tech stack...>
 
 /create-design search
-<describe architecture preferences, performance targets...>
-
 /create-implementation search
 /create-testing search
 ```
@@ -184,13 +284,14 @@ Output (given current version `v0.1.0`, major = `v0`):
 
 ```
 docs/features/v0/search/
+├── README.md
 ├── requirements.md
 ├── design.md
 ├── implementation.md
 └── testing.md
 ```
 
-### Complex feature with sub-features
+#### Complex feature with sub-features
 
 ```
 /init-feature listing
@@ -204,7 +305,7 @@ docs/features/v0/search/
 /create-testing listing/filter
 ```
 
-Output (given current version `v0.1.0`, major = `v0`):
+Output:
 
 ```
 docs/features/v0/listing/
@@ -216,33 +317,20 @@ docs/features/v0/listing/
     └── testing.md
 ```
 
-### Updating existing docs
+#### End-to-end: from zero to shipped
 
 ```
-/update-feature-docs listing/filter
-<describe what changed and why>
+/init-docs                              ← 1. project docs
+/init-feature auth                      ← 2. start feature
+/create-requirements auth               ← 3. plan
+/create-design auth
+/create-implementation auth
+/create-testing auth
+/tdd                                    ← 4. build (test-first)
+/code-review                            ← 5. review
+/pr                                     ← 6. merge
+/ship-version                           ← 7. tag & release
 ```
-
-Prompts you for which doc type to update. Automatically adds a changelog entry. Old content is replaced (not appended) — the changelog serves as the historical record.
-
-### TDD session
-
-```
-/tdd
-I need a function to validate Vietnamese phone numbers.
-- Accept 10-digit format: 0xx-xxx-xxxx
-- Support all carriers: Viettel (032-039), Mobifone (070-079), Vinaphone (081-089)
-- Return { valid: boolean, carrier: string | null, normalized: string }
-- Throw on non-string input
-```
-
-### Code review
-
-```
-/code-review
-```
-
-No arguments needed — automatically reviews all uncommitted changes.
 
 ## Skills
 
@@ -273,6 +361,7 @@ The `agent-md-refactor` skill supports three modes:
 | ---------------- | ----------------------------------------------------------------------------------- |
 | **coding-style** | Immutability, small files (<800 lines), small functions (<50 lines), error handling |
 | **docs-context** | Progressive disclosure — read `docs/overview.md` first, then navigate on demand     |
+| **no-ai-slop**   | Intentional design over generic AI aesthetics — typography, color, layout, motion   |
 | **pattern**      | Repository pattern, consistent API response envelope, skeleton projects             |
 | **security**     | No hardcoded secrets, input validation, injection prevention, rate limiting         |
 | **testing**      | 80% coverage minimum, TDD workflow, unit + integration + E2E tests                  |
@@ -283,8 +372,8 @@ The `agent-md-refactor` skill supports three modes:
 | ---------------- | -------------------------------------------------------------------------- |
 | **coding-style** | Spread-based immutability, async/await error handling, Zod validation      |
 | **pattern**      | `ApiResponse<T>` interface, custom hooks pattern, typed repository pattern |
-| **security**     | Zod for runtime validation, DOMPurify for HTML, helmet for HTTP headers    |
-| **testing**      | Vitest + React Testing Library, MSW for API mocking, Playwright for E2E    |
+| **security**     | Environment variables for secrets, startup validation, security-reviewer   |
+| **testing**      | Playwright for E2E testing                                                 |
 
 ## Scripts
 
@@ -316,6 +405,7 @@ Templates live in `.cursor/templates/` and are used automatically by the command
 - `feature-overview.md` — parent-level feature overview
 - `requirements.md` — requirements & problem understanding
 - `design.md` — system design & architecture
+- `ui-design.md` — visual layout, ASCII wireframes with Tailwind classes, screen flow
 - `implementation.md` — implementation plan
 - `testing.md` — testing strategy
 
